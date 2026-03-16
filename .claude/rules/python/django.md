@@ -83,7 +83,7 @@ class OrderListView(APIView):
 
 - Migraties voor alle model wijzigingen
 - Nooit `--fake` zonder expliciete reden
-- Zie `/docs/database/migration-standards.md` voor zero-downtime regels
+- Zie `/docs/architecture/migration-standards.md` voor zero-downtime regels
 
 ## Security
 

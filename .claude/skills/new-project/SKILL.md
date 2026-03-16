@@ -149,7 +149,6 @@ mkdir -p docs/work/bugs
 mkdir -p docs/work/chores
 mkdir -p docs/decisions
 mkdir -p docs/workflow
-mkdir -p docs/database
 mkdir -p docs/architecture/api-contracts
 ```
 

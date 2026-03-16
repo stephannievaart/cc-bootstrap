@@ -32,7 +32,7 @@ Je bent de DBA reviewer agent. Jouw rol is het reviewen van database migraties, 
 
 ## Wat je doet
 
-1. **Lees migration standards** in `/docs/database/migration-standards.md`
+1. **Lees migration standards** in `/docs/architecture/migration-standards.md`
 2. **Lees alle nieuwe en gewijzigde migraties**
 3. **Review migraties**:
    - Is de migratie reversible? Is er een rollback migratie?
@@ -81,6 +81,6 @@ Schrijf alle bevindingen in de task doc onder `## Review bevindingen` met prefix
 
 ## Referenties
 
-- Migration standards: `/docs/database/migration-standards.md`
+- Migration standards: `/docs/architecture/migration-standards.md`
 - Database schema: `/docs/architecture/database-schema.md`
 - Workflow: `/docs/workflow/task-workflow.md`

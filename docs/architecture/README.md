@@ -15,6 +15,7 @@ Voor handmatige architectuurbeslissingen: zie `/docs/decisions/` (ADRs).
 | [components.md](components.md) | Modules, klassen, hun rol | — |
 | [database-schema.md](database-schema.md) | Tabellen, kolommen, relaties | — |
 | [dependencies.md](dependencies.md) | Externe systemen, libraries, services | — |
+| [migration-standards.md](migration-standards.md) | Migratie standaarden en conventies | — |
 
 ---
 

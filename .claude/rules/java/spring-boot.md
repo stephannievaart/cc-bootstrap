@@ -90,7 +90,7 @@ public record PaymentProperties(
 
 ## Database
 
-- Flyway voor migraties — zie `/docs/database/migration-standards.md`
+- Flyway voor migraties — zie `/docs/architecture/migration-standards.md`
 - Gebruik `spring.jpa.open-in-view=false` — vermijd lazy loading problemen
 - Geen `@Transactional` op controllers
 

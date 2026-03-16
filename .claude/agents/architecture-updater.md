@@ -77,4 +77,4 @@ Genereer of update de volgende documenten in `/docs/architecture/`:
 
 - Architecture docs: `/docs/architecture/`
 - Architecture README: `/docs/architecture/README.md`
-- Database migration standards: `/docs/database/migration-standards.md`
+- Database migration standards: `/docs/architecture/migration-standards.md`
