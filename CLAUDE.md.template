@@ -1,0 +1,79 @@
+# [Project naam]
+
+[Één zin — wat doet deze service en voor wie]
+
+---
+
+## Kernregel — zelflerend project
+
+**Elke beslissing die je maakt wordt direct verwerkt in de juiste doc.**
+Niet achteraf. Op het moment zelf.
+
+- Architectuurbeslissing → ADR in `/docs/decisions/`
+- Patroon dat vaker geldt → standards doc in `/docs/architecture/`
+- Regel die altijd geldt → agent system prompt of skill
+- Iets wat nooit meer mag → expliciete regel in relevante agent/skill
+
+De doc-reviewer agent loopt hier na elke taak achteraan en controleert dit.
+
+---
+
+## Build en run
+
+```bash
+# Build
+[build commando]
+
+# Test
+[test commando]
+
+# Run lokaal
+[run commando]
+
+# Migraties
+[migratie commando]
+```
+
+---
+
+## Repo structuur
+
+```
+src/
+  [structuur]
+docs/
+  features/ bugs/ chores/ decisions/ workflow/ database/ architecture/
+.claude/
+  agents/ skills/ rules/ hooks/
+```
+
+---
+
+## Git regels
+
+- Nooit direct committen op main
+- Altijd feature/bug/chore branch — direct van main
+- Branch naming: `feature/[naam]`, `bug/[P1|P2|P3]-[naam]`, `chore/[naam]`
+- Nooit pushen zonder tests groen
+- Eén Claude Code sessie = één worktree = één branch
+- Worktree naming: `[repo-naam]--[branch-naam-met-streepjes]`
+- Nooit git checkout naar een branch waarop een actieve sessie draait
+
+---
+
+## Werkproces
+
+Alle taken volgen het centrale werkproces → zie `/docs/workflow/task-workflow.md`
+
+Kort:
+- Capture → plan mode → API design indien nodig → implementatie → tests → review → doc-reviewer
+
+---
+
+## Pointers — lees deze voor je begint
+
+- Database wijzigingen → lees `/docs/database/migration-standards.md`
+- API wijzigingen → lees `/docs/architecture/api-conventions.md`
+- Resilience patterns → lees `/docs/architecture/resilience-patterns.md`
+- Architectuur beslissingen → lees `/docs/decisions/` (alle ADRs)
+- Werkproces detail → lees `/docs/workflow/task-workflow.md`

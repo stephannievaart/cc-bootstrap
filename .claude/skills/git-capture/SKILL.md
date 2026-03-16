@@ -1,0 +1,153 @@
+---
+name: git-capture
+description: Interne git capture logica. Handelt WIP commit, checkout main, doc schrijven, branch aanmaken, push, branch in doc schrijven, en terugkeren naar vorige branch af. Aangeroepen door capture skills.
+user-invocable: false
+---
+
+# Git Capture — Interne Capture Logica
+
+Deze skill wordt aangeroepen door de drie capture skills (new-feature, capture-bug, capture-chore). Het handelt alle git operaties af zodat de capture skills zich kunnen focussen op het interview en de doc generatie.
+
+**Nooit direct aanroepen door de gebruiker.**
+
+---
+
+## Input van de capture skill
+
+De capture skill levert:
+- **doc_path** — volledig pad waar de doc moet komen (bijv. `docs/work/features/product-card.md`)
+- **doc_content** — de volledige inhoud van de gegenereerde doc
+- **branch_name** — de branchnaam (bijv. `feature/product-card`)
+
+---
+
+## Uitvoering — stap voor stap
+
+### Stap 1 — Huidige staat opslaan
+```bash
+# Onthoud de huidige branch
+PREVIOUS_BRANCH=$(git branch --show-current)
+```
+
+### Stap 2 — WIP commit (automatisch, geen confirmatie)
+```bash
+# Check of er uncommitted changes zijn
+git status --porcelain
+```
+
+Als er wijzigingen zijn:
+```bash
+git add -A
+git commit -m "WIP: auto-capture — werk geparkeerd voor [branch_name]"
+```
+
+Als er geen wijzigingen zijn: sla deze stap over.
+
+**Geen confirmatie vragen — dit is automatisch.**
+
+### Stap 3 — Checkout main en pull
+```bash
+git checkout main
+git pull origin main
+```
+
+### Stap 4 — Doc schrijven
+Maak de benodigde directories aan als die niet bestaan:
+```bash
+mkdir -p $(dirname [doc_path])
+```
+
+Schrijf de doc content naar het bestand:
+```bash
+# Schrijf doc_content naar doc_path
+```
+
+### Stap 5 — Branch aanmaken
+```bash
+git checkout -b [branch_name]
+```
+
+### Stap 6 — Branch naam in doc schrijven
+Update de doc om de branch naam in te vullen:
+- Zoek naar `**Branch:**` in de doc
+- Vervang `[wordt ingevuld door git-capture]` met de daadwerkelijke branchnaam
+
+```bash
+# Commit de doc met branchnaam
+git add [doc_path]
+git commit -m "docs: voeg [type] doc toe voor [korte-naam]"
+```
+
+De branch naam staat nu in de doc, ongeacht of de push in de volgende stap slaagt.
+
+### Stap 7 — Push naar remote
+```bash
+git push -u origin [branch_name]
+```
+
+Dit zorgt ervoor dat de branch direct op de remote staat. Andere sessies/worktrees kunnen de branch zien.
+
+Als de push faalt, is de branch naam alsnog correct vastgelegd in de doc (zie Stap 6).
+
+### Stap 8 — Terug naar vorige branch
+```bash
+git checkout $PREVIOUS_BRANCH
+```
+
+Als de vorige branch `main` was en er was een WIP commit, dan is er niets om naar terug te keren — de gebruiker was al op main.
+
+---
+
+## Worktree aanmaken (optioneel)
+
+Als de hoofdrepo een worktree setup gebruikt, maak ook een worktree aan:
+
+```bash
+# Bepaal repo naam
+REPO_NAME=$(basename $(git rev-parse --show-toplevel))
+
+# Bepaal worktree pad
+BRANCH_DASHES=$(echo [branch_name] | tr '/' '-')
+WORKTREE_PATH="../${REPO_NAME}--${BRANCH_DASHES}"
+
+# Maak worktree aan
+git worktree add $WORKTREE_PATH [branch_name]
+
+# Maak symlinks
+ln -s $(git rev-parse --show-toplevel)/CLAUDE.md ${WORKTREE_PATH}/CLAUDE.md
+ln -s $(git rev-parse --show-toplevel)/.claude ${WORKTREE_PATH}/.claude
+```
+
+---
+
+## Foutafhandeling
+
+### Push faalt
+Als `git push` faalt (geen remote, geen toegang):
+- Meld aan de aanroepende skill: "Push naar remote mislukt. Branch bestaat lokaal."
+- De capture is niet mislukt — de doc en branch bestaan lokaal
+- De branch naam is al vastgelegd in de doc (Stap 6), dus die informatie gaat niet verloren
+- De gebruiker kan later handmatig pushen
+
+### Branch bestaat al
+Als `git checkout -b` faalt omdat de branch al bestaat:
+- Meld: "Branch [naam] bestaat al. Gebruik de bestaande branch."
+- Checkout de bestaande branch: `git checkout [branch_name]`
+- Ga door met Stap 6
+
+### Merge conflicts op main
+Als `git pull origin main` merge conflicts geeft:
+- Dit zou niet moeten gebeuren (main is shared, geen lokale commits)
+- Als het toch gebeurt: `git merge --abort` en meld het aan de gebruiker
+- **Los dit NIET automatisch op**
+
+---
+
+## Regels
+
+- **Altijd WIP commit** bij uncommitted changes — nooit changes laten liggen
+- **Geen confirmatie** voor de WIP commit — het is automatisch
+- **Altijd pushen** naar remote — de branch moet zichtbaar zijn voor andere sessies
+- **Altijd terug naar vorige branch** — de gebruiker werkt door waar die was
+- **Nooit doc content wijzigen** — dat is de verantwoordelijkheid van de capture skill
+- **Nooit falen op push** — als push niet lukt, ga door met lokale branch
