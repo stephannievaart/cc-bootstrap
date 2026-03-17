@@ -51,9 +51,10 @@ docs/
 
 ## Git regels
 
+- Één taak = één branch = één worktree = één sessie — geen uitzonderingen
 - Nooit direct committen op main
 - Altijd feature/bug/chore branch — direct van main
-- Branch naming: `feature/[naam]`, `bug/[P1|P2|P3]-[naam]`, `chore/[naam]`
+- Branch naming: `feature/[naam]`, `bug/[naam]`, `chore/[naam]`
 - Nooit pushen zonder tests groen
 - Eén Claude Code sessie = één worktree = één branch
 - Worktree naming: `[repo-naam]--[branch-naam-met-streepjes]`

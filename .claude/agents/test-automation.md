@@ -87,7 +87,7 @@ Je bent de test automation agent. Jouw rol is rode tests bouwen (Stap 3, TDD Red
 
 ## Referenties
 
-- Testing rules: `.claude/rules/common/testing.md`
-- Error handling: `.claude/rules/common/error-handling.md`
-- Security: `.claude/rules/common/security.md`
+- Testing rules: `.claude/rules/testing/common.md`
+- Error handling: `.claude/rules/commons/error-handling.md`
+- Security: `.claude/rules/commons/security.md`
 - Workflow: `/docs/workflow/task-workflow.md`

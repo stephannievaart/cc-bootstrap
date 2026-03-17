@@ -64,10 +64,9 @@ Rapporteer bevindingen over het werk van de documentation agent in je rapport.
 Dit is de kern van het zelflerend systeem. Na elke afgeronde taak:
 
 - **Lees de task doc** — zijn er beslissingen, bevindingen of patronen die breder toepasbaar zijn?
-- **Standards docs** — moeten rules in `.claude/rules/common/` of `.claude/rules/[taal]/` worden bijgewerkt?
+- **Standards docs** — moeten rules in `.claude/rules/` worden bijgewerkt?
 - **Skills** — moeten bestaande skills worden bijgewerkt met nieuwe kennis?
 - **Agent prompts** — moeten agent system prompts worden verfijnd op basis van wat geleerd is?
-- **Patronen** — moeten `.claude/rules/common/patterns.md` worden uitgebreid met nieuwe patronen of anti-patronen?
 
 ### 4. Cross-task patronen herkennen
 

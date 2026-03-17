@@ -1,9 +1,13 @@
 ---
 paths:
   - "**/*.java"
+  - "**/*.kt"
+  - "**/*.kts"
 ---
 
 # Spring Boot Rules
+
+Spring Boot-specifieke regels.
 
 ---
 
@@ -30,7 +34,7 @@ src/main/java/com/[bedrijf]/[service]/
 - Dun — alleen request/response mapping
 - Geen business logica
 - Valideer input met `@Valid` en Bean Validation
-- Gebruik `ResponseEntity<?>` voor expliciete HTTP status control
+- Gebruik `ResponseEntity<OrderResponse>` met concreet type — geen `ResponseEntity<?>` wildcards
 
 ```java
 @RestController
@@ -79,6 +83,7 @@ public record PaymentProperties(
 ## Exception handling
 
 - Centrale `@RestControllerAdvice` voor exception → HTTP response mapping
+- Gebruik `ProblemDetail` (RFC 9457, Spring 6+) als error response type — geen eigen error DTOs
 - Domein exceptions in de service laag
 - Geen HTTP exceptions in de service laag
 
@@ -90,9 +95,31 @@ public record PaymentProperties(
 
 ## Database
 
-- Flyway voor migraties — zie `/docs/architecture/migration-standards.md`
+- Flyway voor migraties — zie `docs/architecture/database-standards.md`
 - Gebruik `spring.jpa.open-in-view=false` — vermijd lazy loading problemen
-- Geen `@Transactional` op controllers
+
+## Observability
+
+- Micrometer Tracing voor distributed tracing — propageert W3C `traceparent` automatisch
+- Spring Boot Actuator voor health endpoints met liveness en readiness groepen
+- Configureer: `management.endpoint.health.group.readiness.include=db,diskSpace`
+- Custom `HealthIndicator` implementaties voor niet-standaard dependencies
+- Zie `docs/architecture/observability-standards.md` voor verplichte log velden
+- Zie `docs/architecture/resilience-patterns.md` voor health check semantiek
+
+## Resilience
+
+- Resilience4j als resilience library — geen eigen retry/circuit breaker logica
+- Configureer via `application.yml`, niet programmatisch
+- Annotaties op service methoden: `@CircuitBreaker`, `@Retry`, `@TimeLimiter`
+- Elke externe dependency krijgt een eigen benoemde circuit breaker instance
+- Zie `docs/architecture/resilience-patterns.md` voor thresholds en backoff strategie
+
+## Startup & shutdown
+
+- Graceful shutdown: `server.shutdown=graceful`
+- Shutdown timeout: `spring.lifecycle.timeout-per-shutdown-phase=30s`
+- Fail fast bij ontbrekende config: `@Validated` op `@ConfigurationProperties` classes
 
 ## Testing
 

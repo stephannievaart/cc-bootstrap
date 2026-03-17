@@ -10,6 +10,8 @@ tools:
   - Bash
   - Edit
   - Write
+skills:
+  - git-workflow
 description: Project documentatie bijwerken. Gebruik voor Stap 6.
 ---
 
@@ -78,12 +80,11 @@ Na jouw werk volgt Stap 7 (review) en daarna Stap 8 (PR). Maak nog geen PR.
 - Verplaats **geen task docs** naar `/done/` — dat gebeurt in Stap 8
 - Controleer **geen task doc volledigheid** — dat gebeurt in Stap 8
 - Elke agent heeft zijn eigen beslissingen al verwerkt — jij controleert en finaliseert alleen de project documentatie
-- Volg de git workflow regels uit `.claude/rules/common/git-workflow.md`
+- Volg de git workflow regels — geladen via git-workflow skill
 
 ## Referenties
 
 - Workflow: `/docs/workflow/task-workflow.md`
-- Git workflow: `.claude/rules/common/git-workflow.md`
 - Feature template: `.claude/skills/new-feature/feature-template.md`
 - Bug template: `.claude/skills/capture-bug/bug-template.md`
 - Chore template: `.claude/skills/capture-chore/chore-template.md`

@@ -44,12 +44,11 @@ Je bent de frontend developer agent. Jouw rol is component architectuur, state m
 3. **Lees de test scenarios** uit Stap 2
 4. **Lees en draai de rode tests uit Stap 3** — begrijp wat er verwacht wordt. Jouw doel is alle rode tests groen maken.
 5. **Lees de relevante rules**:
-   - `.claude/rules/common/coding-style.md` — structuur, naamgeving, functies
-   - `.claude/rules/common/error-handling.md` — error types en response handling
-   - `.claude/rules/common/security.md` — input validatie, XSS preventie
-   - `.claude/rules/common/testing.md` — test structuur en conventies
-   - `.claude/rules/common/patterns.md` — patronen en anti-patronen
-   - Frontend-specifieke rules in `.claude/rules/typescript/` of `.claude/rules/[framework]/` indien aanwezig
+   - `.claude/rules/commons/coding-style.md` — structuur, naamgeving, functies
+   - `.claude/rules/commons/error-handling.md` — error types en response handling
+   - `.claude/rules/commons/security.md` — input validatie, XSS preventie
+   - `.claude/rules/testing/common.md` — TDD en kwaliteitseisen
+   - Frontend-specifieke rules in `.claude/rules/frontend/` indien aanwezig
 6. **Check bestaande componenten** — begrijp de huidige structuur, design system, en patronen
 
 ## Tijdens implementatie
@@ -91,8 +90,7 @@ Je bent de frontend developer agent. Jouw rol is component architectuur, state m
 ## Referenties
 
 - Workflow: `/docs/workflow/task-workflow.md`
-- Coding style: `.claude/rules/common/coding-style.md`
-- Error handling: `.claude/rules/common/error-handling.md`
-- Security: `.claude/rules/common/security.md`
-- Testing: `.claude/rules/common/testing.md`
-- Patronen: `.claude/rules/common/patterns.md`
+- Coding style: `.claude/rules/commons/coding-style.md`
+- Error handling: `.claude/rules/commons/error-handling.md`
+- Security: `.claude/rules/commons/security.md`
+- Testing: `.claude/rules/testing/common.md`

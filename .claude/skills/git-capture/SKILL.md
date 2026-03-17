@@ -87,7 +87,7 @@ git push -u origin [branch_name]
 
 Dit zorgt ervoor dat de branch direct op de remote staat. Andere sessies/worktrees kunnen de branch zien.
 
-Als de push faalt, is de branch naam alsnog correct vastgelegd in de doc (zie Stap 6).
+Als de push faalt: **STOP** — ga niet door naar Stap 8.
 
 ### Stap 8 — Terug naar vorige branch
 ```bash
@@ -123,11 +123,14 @@ ln -s $(git rev-parse --show-toplevel)/.claude ${WORKTREE_PATH}/.claude
 ## Foutafhandeling
 
 ### Push faalt
-Als `git push` faalt (geen remote, geen toegang):
-- Meld aan de aanroepende skill: "Push naar remote mislukt. Branch bestaat lokaal."
-- De capture is niet mislukt — de doc en branch bestaan lokaal
-- De branch naam is al vastgelegd in de doc (Stap 6), dus die informatie gaat niet verloren
-- De gebruiker kan later handmatig pushen
+Als `git push` faalt:
+- Schrijf bovenaan de task doc:
+  `> TODO: Push naar remote mislukt — draai 'git push -u origin [branch_name]' voor je verdergaat. Branch bestaat alleen lokaal en is niet zichtbaar op andere machines.`
+- Meld aan de gebruiker:
+  > "Push naar remote mislukt. De branch bestaat alleen lokaal — niet zichtbaar op andere machines. Fix de remote verbinding en draai handmatig:
+  > `git push -u origin [branch_name]`
+  > Ga daarna pas verder."
+- **Stop hier — maak geen worktree aan en ga niet terug naar de vorige branch.**
 
 ### Branch bestaat al
 Als `git checkout -b` faalt omdat de branch al bestaat:
@@ -150,4 +153,4 @@ Als `git pull origin main` merge conflicts geeft:
 - **Altijd pushen** naar remote — de branch moet zichtbaar zijn voor andere sessies
 - **Altijd terug naar vorige branch** — de gebruiker werkt door waar die was
 - **Nooit doc content wijzigen** — dat is de verantwoordelijkheid van de capture skill
-- **Nooit falen op push** — als push niet lukt, ga door met lokale branch
+- **Nooit doorgaan bij push-fout** — hard stoppen en gebruiker dwingen te fixen

@@ -32,8 +32,8 @@ Je bent de logging & observability reviewer agent. Jouw rol is controleren dat d
 ## Wat je doet
 
 1. **Lees de implementatie** — alle nieuwe en gewijzigde bestanden
-2. **Lees error handling rules** in `.claude/rules/common/error-handling.md`
-3. **Lees security rules** in `.claude/rules/common/security.md` — specifiek de sectie over logging
+2. **Lees error handling rules** in `.claude/rules/commons/error-handling.md`
+3. **Lees security rules** in `.claude/rules/commons/security.md` — specifiek de sectie over logging
 
 ### Structured logging
 
@@ -102,6 +102,6 @@ Schrijf alle bevindingen in de task doc onder `## Review bevindingen` met prefix
 
 ## Referenties
 
-- Error handling: `.claude/rules/common/error-handling.md`
-- Security (logging regels): `.claude/rules/common/security.md`
+- Error handling: `.claude/rules/commons/error-handling.md`
+- Security (logging regels): `.claude/rules/commons/security.md`
 - Workflow: `/docs/workflow/task-workflow.md`

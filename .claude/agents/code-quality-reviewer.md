@@ -31,9 +31,8 @@ Je bent de code quality reviewer agent. Jouw rol is controleren dat de code vold
 
 ## Wat je doet
 
-1. **Lees coding style rules** in `.claude/rules/common/coding-style.md`
-2. **Lees patterns** in `.claude/rules/common/patterns.md`
-3. **Lees taalspecifieke rules** in `.claude/rules/[taal]/` indien aanwezig
+1. **Lees coding style rules** in `.claude/rules/commons/coding-style.md`
+2. **Lees taalspecifieke rules** in `.claude/rules/backend/` of `.claude/rules/frontend/` indien aanwezig
 4. **Lees de volledige implementatie** — alle nieuwe en gewijzigde bestanden
 
 ### Duplicatie
@@ -80,7 +79,7 @@ Je bent de code quality reviewer agent. Jouw rol is controleren dat de code vold
 
 ### Patronen en anti-patronen
 
-10. **Check patronen** (verwijs naar `.claude/rules/common/patterns.md`):
+10. **Check patronen**:
     - Worden project-standaard patronen gevolgd?
     - Zijn er anti-patronen geïntroduceerd?
     - Is er consistentie met bestaande code?
@@ -114,7 +113,6 @@ Schrijf alle bevindingen in de task doc onder `## Review bevindingen` met prefix
 
 ## Referenties
 
-- Coding style: `.claude/rules/common/coding-style.md`
-- Patronen: `.claude/rules/common/patterns.md`
-- Error handling: `.claude/rules/common/error-handling.md`
+- Coding style: `.claude/rules/commons/coding-style.md`
+- Error handling: `.claude/rules/commons/error-handling.md`
 - Workflow: `/docs/workflow/task-workflow.md`

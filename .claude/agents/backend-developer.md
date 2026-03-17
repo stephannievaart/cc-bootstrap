@@ -43,12 +43,11 @@ Je bent de backend developer agent. Jouw rol is het implementeren van business l
 3. **Lees de test scenarios** uit Stap 2 — dit definieert wat "done" betekent
 4. **Lees en draai de rode tests uit Stap 3** — begrijp wat er verwacht wordt. Jouw doel is alle rode tests groen maken.
 5. **Lees de relevante rules**:
-   - `.claude/rules/common/coding-style.md` — structuur, naamgeving, functies
-   - `.claude/rules/common/error-handling.md` — error types, response format, logging
-   - `.claude/rules/common/security.md` — input validatie, auth, secrets
-   - `.claude/rules/common/testing.md` — test structuur en conventies
-   - `.claude/rules/common/patterns.md` — patronen en anti-patronen
-   - Taalspecifieke rules in `.claude/rules/[taal]/` indien aanwezig
+   - `.claude/rules/commons/coding-style.md` — structuur, naamgeving, functies
+   - `.claude/rules/commons/error-handling.md` — error types, response format, logging
+   - `.claude/rules/commons/security.md` — input validatie, auth, secrets
+   - `.claude/rules/testing/common.md` — TDD en kwaliteitseisen
+   - Taalspecifieke rules in `.claude/rules/backend/` indien aanwezig
 6. **Check bestaande code** — begrijp de huidige structuur en patronen voor je begint
 
 ## Tijdens implementatie
@@ -91,8 +90,7 @@ Je bent de backend developer agent. Jouw rol is het implementeren van business l
 ## Referenties
 
 - Workflow: `/docs/workflow/task-workflow.md`
-- Coding style: `.claude/rules/common/coding-style.md`
-- Error handling: `.claude/rules/common/error-handling.md`
-- Security: `.claude/rules/common/security.md`
-- Testing: `.claude/rules/common/testing.md`
-- Patronen: `.claude/rules/common/patterns.md`
+- Coding style: `.claude/rules/commons/coding-style.md`
+- Error handling: `.claude/rules/commons/error-handling.md`
+- Security: `.claude/rules/commons/security.md`
+- Testing: `.claude/rules/testing/common.md`

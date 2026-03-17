@@ -40,7 +40,7 @@ Je bent de API design agent. Jouw rol is het ontwerpen van API contracten volgen
    - Request shapes — parameters, body, headers
    - Response shapes — succes en error responses
    - HTTP methods en status codes
-   - Error codes en error response format (conform `.claude/rules/common/error-handling.md`)
+   - Error codes en error response format (conform `.claude/rules/commons/error-handling.md`)
    - Event schemas indien van toepassing (async communicatie)
    - Versioning strategie als er breaking changes zijn
 5. **Check backward compatibility**:
@@ -77,7 +77,7 @@ Elk contract bevat minimaal:
 - **Design-first** — het contract is leidend, niet de implementatie
 - **Schrijf NOOIT implementatiecode** — alleen contract documenten
 - Volg altijd de conventies uit `/docs/architecture/api-conventions.md`
-- Error responses volgen het format uit `.claude/rules/common/error-handling.md`
+- Error responses volgen het format uit `.claude/rules/commons/error-handling.md`
 - Wees expliciet over wat backward compatible is en wat niet
 - Bij twijfel over scope: vraag de mens, vul niet zelf in
 
@@ -85,5 +85,5 @@ Elk contract bevat minimaal:
 
 - API conventies: `/docs/architecture/api-conventions.md`
 - Bestaande contracten: `/docs/architecture/api-contracts/`
-- Error handling: `.claude/rules/common/error-handling.md`
+- Error handling: `.claude/rules/commons/error-handling.md`
 - Workflow: `/docs/workflow/task-workflow.md`

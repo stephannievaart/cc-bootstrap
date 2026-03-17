@@ -6,6 +6,8 @@ paths:
 
 # TypeScript Conventions
 
+TypeScript-specifieke conventies.
+
 ---
 
 ## Versie & tooling
@@ -80,7 +82,6 @@ type Result = any
 - Geef errors altijd door of log ze — nooit stil opslokken
 
 ```typescript
-// Goed
 try {
   const result = await processOrder(orderId)
   return result
@@ -90,17 +91,21 @@ try {
 }
 ```
 
+## Observability
+
+- Gebruik `pino` voor structured JSON logging in Node.js backend code
+- Maak een logger instance per module: `const logger = pino({ name: 'module-naam' })`
+- Zie `docs/architecture/observability-standards.md` voor verplichte velden en log niveaus
+
 ## Testing
 
-- Vitest (voor Vite projecten) of Jest
-- `@testing-library` voor UI component tests
+- Test bestanden: `[naam].test.ts` naast bronbestanden of in `__tests__/`
 - Mockeer externe dependencies — niet interne modules
-- Test bestanden naast de bronbestanden of in `__tests__/`
 
 ## Verboden
 
 - `any` zonder `// eslint-disable` comment met uitleg
 - Non-null assertion `!` zonder uitleg
-- `console.log` in productiecode
+- `console.log` / `console.warn` / `console.error` in productiecode — gebruik de project logger
 - Mutable exports (verander geen geëxporteerde objecten)
 - `eval()`

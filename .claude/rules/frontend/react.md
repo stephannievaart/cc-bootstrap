@@ -7,6 +7,8 @@ paths:
 
 # React Rules
 
+React-specifieke regels.
+
 ---
 
 ## Component structuur

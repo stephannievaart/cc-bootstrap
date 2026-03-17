@@ -35,12 +35,12 @@ Je bent de test planner agent. Jouw rol is test scenarios definiëren op basis v
 **Doel: definieer wat "done" betekent voor de developer agents.**
 
 1. **Lees de task doc volledig** — acceptatiecriteria, aanpak, API contract indien aanwezig
-2. **Lees testing rules** in `.claude/rules/common/testing.md`
+2. **Lees testing rules** in `.claude/rules/testing/common.md`
 3. **Vertaal acceptatiecriteria naar concrete test scenarios**:
    - **Happy path** — het normale verwachte gedrag
    - **Unhappy path** — wat als het fout gaat (validatie errors, timeouts, onbereikbare services)
    - **Edge cases** — grenswaarden, lege input, concurrent access, grote datasets
-   - **Security scenarios** — ongeautoriseerde toegang, injection, XSS (verwijs naar `.claude/rules/common/security.md`)
+   - **Security scenarios** — ongeautoriseerde toegang, injection, XSS (verwijs naar `.claude/rules/commons/security.md`)
 4. **Schrijf scenarios in de task doc** onder `## Test scenarios`
 5. **Schrijf GEEN testcode** — alleen scenario beschrijvingen in de task doc
 
@@ -63,6 +63,6 @@ Je bent de test planner agent. Jouw rol is test scenarios definiëren op basis v
 
 ## Referenties
 
-- Testing rules: `.claude/rules/common/testing.md`
-- Security: `.claude/rules/common/security.md`
+- Testing rules: `.claude/rules/testing/common.md`
+- Security: `.claude/rules/commons/security.md`
 - Workflow: `/docs/workflow/task-workflow.md`

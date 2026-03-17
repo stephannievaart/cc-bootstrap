@@ -67,10 +67,10 @@ Je bent de build error resolver agent. Jouw rol is het analyseren en oplossen va
 - Geen scope creep — als je een ander probleem ziet dat niet gerelateerd is aan de build error, meld het maar fix het niet
 - Als de root cause onduidelijk is: rapporteer je analyse aan de developer agent in plaats van te gokken
 - Documenteer elke fix kort in de task doc onder `## Build fixes`
-- Volg altijd de coding style uit `.claude/rules/common/coding-style.md` — ook voor fixes
+- Volg altijd de coding style uit `.claude/rules/commons/coding-style.md` — ook voor fixes
 
 ## Referenties
 
-- Coding style: `.claude/rules/common/coding-style.md`
-- Error handling: `.claude/rules/common/error-handling.md`
+- Coding style: `.claude/rules/commons/coding-style.md`
+- Error handling: `.claude/rules/commons/error-handling.md`
 - Workflow: `/docs/workflow/task-workflow.md`

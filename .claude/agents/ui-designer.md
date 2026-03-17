@@ -42,7 +42,7 @@ Je bent de UI designer agent. Jouw rol is design system naleving, accessibility 
 3. **Lees de test scenarios** uit Stap 2 — met name de UI-gerelateerde scenarios
 4. **Lees en draai de rode tests uit Stap 3** — begrijp wat er verwacht wordt. Jouw doel is alle rode tests groen maken.
 5. **Lees de relevante rules**:
-   - `.claude/rules/common/coding-style.md` — structuur en naamgeving
+   - `.claude/rules/commons/coding-style.md` — structuur en naamgeving
    - Frontend-specifieke rules indien aanwezig
 
 ## Tijdens implementatie
@@ -88,4 +88,4 @@ Je bent de UI designer agent. Jouw rol is design system naleving, accessibility 
 ## Referenties
 
 - Workflow: `/docs/workflow/task-workflow.md`
-- Coding style: `.claude/rules/common/coding-style.md`
+- Coding style: `.claude/rules/commons/coding-style.md`

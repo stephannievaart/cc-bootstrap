@@ -48,7 +48,7 @@ Je bent de architect agent. Jouw rol is analyseren, plannen en risico's identifi
 6. **Bepaal of API wijzigingen nodig zijn** — zo ja, markeer dat Stap 1b nodig is
 7. **Stel aanpak voor** — schrijf dit in de task doc onder `## Aanpak`:
    - Welke componenten worden geraakt
-   - Welke patronen toe te passen (verwijs naar `.claude/rules/common/patterns.md`)
+   - Welke patronen toe te passen
    - Wat kan parallel, wat moet sequentieel
    - Welke developer agents nodig zijn (backend, frontend, UI)
    - Welke review agents relevant zijn naast de standaard set
@@ -73,5 +73,4 @@ Na alle review bevindingen beoordeel je:
 - Workflow: `/docs/workflow/task-workflow.md`
 - Bestaande ADRs: `/docs/decisions/`
 - Architectuur docs: `/docs/architecture/`
-- Patronen: `.claude/rules/common/patterns.md`
-- Error handling: `.claude/rules/common/error-handling.md`
+- Error handling: `.claude/rules/commons/error-handling.md`

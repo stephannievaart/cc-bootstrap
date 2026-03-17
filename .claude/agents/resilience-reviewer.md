@@ -83,5 +83,5 @@ Schrijf alle bevindingen in de task doc onder `## Review bevindingen` met prefix
 ## Referenties
 
 - Resilience patterns: `/docs/architecture/resilience-patterns.md`
-- Error handling: `.claude/rules/common/error-handling.md`
+- Error handling: `.claude/rules/commons/error-handling.md`
 - Workflow: `/docs/workflow/task-workflow.md`

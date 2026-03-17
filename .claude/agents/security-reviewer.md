@@ -35,7 +35,7 @@ Je bent de security reviewer agent. Jouw rol is het identificeren van security k
 
 ## Wat je doet
 
-1. **Lees security rules** in `.claude/rules/common/security.md`
+1. **Lees security rules** in `.claude/rules/commons/security.md`
 2. **Lees de volledige implementatie** — elke nieuwe of gewijzigde file
 
 ### OWASP Top 10 check
@@ -107,6 +107,6 @@ Schrijf alle bevindingen in de task doc onder `## Review bevindingen` met prefix
 
 ## Referenties
 
-- Security rules: `.claude/rules/common/security.md`
-- Error handling: `.claude/rules/common/error-handling.md`
+- Security rules: `.claude/rules/commons/security.md`
+- Error handling: `.claude/rules/commons/error-handling.md`
 - Workflow: `/docs/workflow/task-workflow.md`

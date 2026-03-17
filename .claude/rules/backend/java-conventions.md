@@ -5,6 +5,8 @@ paths:
 
 # Java Conventions
 
+Java-specifieke conventies.
+
 ---
 
 ## Versie & tooling
@@ -41,24 +43,24 @@ paths:
 - Collections: gebruik `List.of()`, `Map.of()` voor immutable collections
 - Muteer geen parameters van methoden
 
-## Spring Boot specifiek (indien van toepassing)
+## Logging & observability
 
-- Constructor injection — geen `@Autowired` op velden
-- `@Service`, `@Repository`, `@Component` annotaties correct gebruiken
-- Configuratie via `@ConfigurationProperties` — geen losse `@Value` overal
-- Geen business logic in `@RestController` klassen
+- SLF4J als logging API — nooit direct Logback, Log4j2, of `java.util.logging`
+- Structured logging via Logback met JSON encoder (Logstash Logback Encoder)
+- MDC voor trace context: `MDC.put("trace_id", ...)` wordt automatisch meegenomen in elke log entry
+- Parameterized logging: `log.info("Order {} created", orderId)` — nooit string concatenatie
+- Zie `docs/architecture/observability-standards.md` voor verplichte velden en log niveaus
 
 ## Testing
 
-- JUnit 5 + Mockito
-- `@ExtendWith(MockitoExtension.class)` voor unit tests
-- `@SpringBootTest` alleen voor integratie tests — te zwaar voor unit tests
-- Test klassen zijn package-private
+- JUnit 5 + Mockito als standaard test stack
+- AssertJ voor fluent assertions — prefer boven JUnit assertions
+- Test klassen zijn package-private (geen `public`)
 
 ## Verboden
 
 - `null` teruggeven uit publieke methoden — gebruik `Optional`
-- Field injection met `@Autowired`
 - `System.out.println` in productiecode
 - Mutable static state
 - Raw types: `List` in plaats van `List<String>`
+- String concatenatie in log statements: `log.info("Order " + id)` — gebruik `log.info("Order {}", id)`
