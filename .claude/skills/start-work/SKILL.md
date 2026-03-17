@@ -57,18 +57,32 @@ status: in-progress
 
 Commit: `docs: start werk aan [taaknaam]`
 
-### 4. Check branch uit
+### 4. Check branch uit (worktree enforcement)
 - Lees de branch naam uit de task doc (zoek naar `Branch:`)
-- Check of er een worktree bestaat voor deze branch
-  - Ja: meld aan gebruiker welke worktree te gebruiken
-  - Nee: `git checkout [branch]`
+- Elke branch heeft altijd een worktree (aangemaakt door git-capture)
+- Detecteer het pad:
+  ```bash
+  REPO_NAME=$(basename $(git rev-parse --show-toplevel))
+  BRANCH_DASHES=$(echo [branch] | tr '/' '-')
+  WORKTREE_PATH="../${REPO_NAME}--${BRANCH_DASHES}"
+  ```
+- **Als de worktree bestaat én de huidige working directory is NIET die worktree:**
+  STOP. Meld expliciet:
+  > "Deze taak hoort in de worktree op `[WORKTREE_PATH]`.
+  > Open daar een nieuwe Claude Code sessie en voer `/start-work` opnieuw uit."
+- **Als de huidige working directory WEL de juiste worktree is:** ga door.
+- **Als de worktree niet bestaat** (edge case: handmatig verwijderd):
+  Maak hem aan met `git worktree add [WORKTREE_PATH] [branch]`
+  en meld daarna hetzelfde als hierboven (open sessie in de worktree).
 - Pull laatste wijzigingen: `git pull origin [branch]` (als remote bestaat)
 
-### 5. Instrueer /clear
+### 5. /clear herinnering
 Meld aan de gebruiker:
-> "Doe nu `/clear` voor een schone sessie. Start daarna opnieuw en zeg 'ga verder met [taaknaam]'."
+> "Is dit je eerste actie in deze sessie? Dan kun je doorgaan.
+> Heb je al eerder werk gedaan in deze sessie? Doe dan eerst `/clear`
+> en zeg daarna 'ga verder met [taaknaam]'."
 
-**Wacht hier — de volgende stappen gebeuren in een schone sessie.**
+**Wacht op bevestiging — ga niet door tot de gebruiker antwoordt.**
 
 ---
 
@@ -163,7 +177,7 @@ Dit wordt door start-work zelf georkestreerd (geen aparte agent):
 
 ## Regels
 
-- **Altijd /clear adviseren voor start** — schone context is essentieel
+- **Altijd vragen of sessie vers is** — gebruiker bevestigt zelf of /clear nodig is
 - **Elke taak mag maar door één worktree tegelijk bewerkt worden** — check via branch matching
 - **Volg de stappen in volgorde** — sla er nooit een over
 - **Plan mode stappen mogen nooit code schrijven**
