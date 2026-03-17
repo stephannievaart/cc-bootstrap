@@ -42,7 +42,7 @@ Stel de vragen in groepen. Wacht op antwoord per groep voordat je doorgaat. Vat 
 
 ### Groep 5 — Deployment
 19. **Deployment target** — Kubernetes, ECS, Lambda, bare metal?
-20. **CI/CD** — GitHub Actions, GitLab CI, Jenkins, of anders?
+20. **CI/CD** — GitHub Actions, GitLab CI, Jenkins, of anders? (mag ook "nog niet besloten")
 21. **Container** — Docker-based of anders?
 22. **Environments** — welke (dev, staging, production)?
 
@@ -151,6 +151,23 @@ mkdir -p docs/decisions
 mkdir -p docs/workflow
 mkdir -p docs/architecture/api-contracts
 ```
+
+### Stap 7b. CI/CD afhandelen
+
+Op basis van het antwoord op de CI/CD vraag (vraag 20):
+
+**Als CI/CD al besloten is:**
+- Leg de keuze vast in ADR-001 (onder de andere stack beslissingen)
+- Voeg toe aan de agent projectcontext waar relevant
+
+**Als CI/CD nog niet besloten is:**
+- Maak een chore doc aan in `docs/work/chores/` met het chore-template:
+  - **Titel:** CI/CD pipeline opzetten
+  - **Type:** ci-cd
+  - **Risico:** midden
+  - **Beschrijving:** CI/CD pipeline opzetten voor het project. Minimale pipeline stappen: build, test, static analysis, deploy. Richtlijnen: één keer builden en overal deployen (niet per omgeving opnieuw), dezelfde deploy methode op elke omgeving, geen handmatige stappen, secrets via secret store van de CI/CD tooling (nooit in code of logs).
+  - **Acceptatiecriteria:** pipeline draait op elke push, tests zijn verplicht groen voor merge, deploy naar staging is geautomatiseerd
+  - **Urgentie:** niet blokkerend voor development, wel nodig voor eerste deploy
 
 ### Stap 8. Git herinitialiseren
 
