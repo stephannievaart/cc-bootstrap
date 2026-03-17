@@ -26,7 +26,7 @@ if ! git diff --quiet 2>/dev/null || ! git diff --cached --quiet 2>/dev/null; th
 fi
 
 # Check op untracked files (exclusief .claude/ en node_modules/)
-UNTRACKED=$(git ls-files --others --exclude-standard 2>/dev/null | grep -v "^\.claude/" | grep -v "^node_modules/" | head -5)
+UNTRACKED=$(git ls-files --others --exclude-standard 2>/dev/null | grep -v "^\.claude/" | grep -v "^node_modules/" | head -5 || true)
 if [ -n "$UNTRACKED" ]; then
   echo ""
   echo "⚠ Untracked bestanden gevonden:"
