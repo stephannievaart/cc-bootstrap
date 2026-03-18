@@ -40,10 +40,8 @@ A complete Claude Code project bootstrap system for microservice development. Th
 |-------|---------|
 | API contract reviewer | Alleen als er contract is uit Stap 1b |
 | DBA reviewer | Alleen als database geraakt wordt |
-| Resilience reviewer | Altijd bij features en bugs |
+| Non-functional reviewer | Resilience en observability — altijd bij features en bugs |
 | Security reviewer | Altijd |
-| Logging & observability reviewer | Altijd bij features en bugs |
-| Code quality reviewer | Altijd |
 | Doc-reviewer | Altijd — als laatste van de groep |
 
 **On-demand (niet in review team):**
@@ -60,19 +58,16 @@ A complete Claude Code project bootstrap system for microservice development. Th
 |-------|------|------|-------|-------------|
 | architect | 1 | plan | opus | nee |
 | api-design | 1b | plan | sonnet | ja — alleen bij API wijziging |
-| test-automation | 2 (plan) / 4+5 (default) | plan→default | sonnet | nee |
-| backend-developer | 3 | default | sonnet | ja — bij backend werk |
-| frontend-developer | 3 | default | sonnet | ja — bij frontend werk | ✅ |
-| ui-designer | 3 | default | sonnet | ja — bij UI werk | ✅ |
-| api-contract-reviewer | 6 | plan | sonnet | ja — alleen bij API contract |
-| dba-reviewer | 6 | plan | sonnet | ja — alleen bij DB wijziging |
-| resilience-reviewer | 6 | plan | sonnet | altijd bij feat/bug |
-| security-reviewer | 6 | plan | opus | altijd |
-| logging-observability-reviewer | 6 | plan | sonnet | altijd bij feat/bug |
-| code-quality-reviewer | 6 | plan | sonnet | altijd |
-| doc-reviewer | 6 | acceptEdits | sonnet | altijd — als laatste |
-| documentation | 7a | default | sonnet | altijd |
-| architecture-updater | on-demand | acceptEdits | sonnet | na structuurwijzigingen |
+| test-automation | 2 (plan) / 3+5 (default) | plan→default | sonnet | nee |
+| backend-developer | 4 | default | sonnet | ja — bij backend werk |
+| frontend-developer | 4 | default | sonnet | ja — bij frontend werk |
+| ui-designer | 4 | default | sonnet | ja — bij UI werk |
+| api-contract-reviewer | 7 | plan | sonnet | ja — alleen bij API contract |
+| dba-reviewer | 7 | plan | sonnet | ja — alleen bij DB wijziging |
+| non-functional-reviewer | 7 | plan | sonnet | altijd bij feat/bug |
+| security-reviewer | 7 | plan | opus | altijd |
+| doc-reviewer | 7 | acceptEdits | sonnet | altijd — als laatste |
+| documentation | 6 | default | sonnet | altijd |
 | build-error-resolver | 3/4/5 | default | sonnet | on-demand bij build fouten |
 
 **Gebaseerd op:** affaan-m/everything-claude-code (architect, security-reviewer, code-reviewer, database-reviewer, build-error-resolver, tdd-guide) + eigen ontwerp
@@ -93,65 +88,33 @@ A complete Claude Code project bootstrap system for microservice development. Th
 
 ```
 /docs
-  /features
-    /backlog          ← defined, not started
-    /in-progress      ← one at a time only
-    /done             ← completed
-  /bugs
-    /open             ← P1/P2/P3/P4 severity
-    /in-progress
-    /done
-  /chores
-    /backlog          ← large chores waiting
-    /in-progress
-    /done
+  /work
+    /features         ← backlog / in-progress / done
+    /bugs             ← open / in-progress / done
+    /chores           ← backlog / in-progress / done
   /decisions          ← ADRs (Architecture Decision Records)
   /workflow           ← task-workflow.md — het centrale werkproces
-  /database           ← migration-standards.md
   /architecture
-    README.md         ← index van gegenereerde docs + wanneer updaten
-    overview.md       ← gegenereerd door architecture-updater
-    components.md     ← gegenereerd door architecture-updater
-    database-schema.md ← gegenereerd vanuit migraties
-    dependencies.md   ← gegenereerd vanuit build files + code
+    README.md         ← index van docs + wanneer updaten
     /api-contracts    ← handmatig door api-design agent (Stap 1b)
     api-conventions.md
     resilience-patterns.md
-  /agents             ← long-term memory, accumulated decisions
+    observability-standards.md
+    database-standards.md
+    testing-standards.md
 
 .claude/
-  /agents             ← all agent .md definition files
-  /skills             ← all skill folders with SKILL.md
-  /commands
-    new-project.md    ← bootstrap interview + scaffold genereren
-    status.md         ← project status overzicht
+  /agents             ← 12 agent .md definition files
+  /skills             ← 14 skill folders with SKILL.md
   /hooks
-    hooks.json        ← hook configuratie
     /scripts
       check-review-complete.sh   ← blokkeert PR bij open CRITICAL/HIGH
-      session-end-reminder.sh    ← herinnert aan WIP commit + doc updates
-  /templates
-    /features         ← feature-template.md
-    /bugs             ← bug-template.md
-    /chores           ← chore-template.md
-.claude/rules/
-  /common
-    development-workflow.md  ← harde procesregels
-    git-workflow.md          ← branch/commit/PR regels
-    security.md              ← security standaarden
-    testing.md               ← test strategie en regels
-    error-handling.md        ← error handling standaarden
-    coding-style.md          ← stijlregels naast linter
-    patterns.md              ← patronen en anti-patronen
-  /java                      ← paths: **/*.java
-    conventions.md           ← Java specifieke regels
-    spring-boot.md           ← Spring Boot structuur en regels
-  /python                    ← paths: **/*.py
-    conventions.md           ← Python specifieke regels
-    django.md                ← Django structuur en regels
-  /typescript                ← paths: **/*.ts, **/*.tsx, **/*.jsx
-    conventions.md           ← TypeScript specifieke regels
-    react.md                 ← React patterns en component regels
+  /rules
+    /commons          ← coding-style, error-handling, security
+    /backend          ← common + taalspecifiek (java, python, go, kotlin, elixir, dotnet)
+    /frontend         ← common, ui-ux, typescript, react, angular
+    /testing          ← common + taalspecifiek + e2e
+  settings.json       ← permissions + hook configuratie
 CLAUDE.md             ← lean, hard rules + pointers only
 ```
 
@@ -358,7 +321,7 @@ Review agents draaien parallel. Doc-reviewer altijd als laatste. Bevindingen in 
 - Conflicten: agents zoeken eerst consensus. Onoplosbaar → escaleert naar mens
 - Na review: architect bepaalt impact → API geraakt: terug Stap 1b, implementatie: terug Stap 3
 
-Reviewers: API contract (conditioneel), DBA (conditioneel), Resilience, Security, Logging & observability, Code quality, Doc-reviewer
+Reviewers: API contract (conditioneel), DBA (conditioneel), Non-functional, Security, Doc-reviewer
 
 ### Stap 7a — Afronden `normal mode`
 Documentatie agent: controleert task doc volledigheid, finaliseert ADR, doc naar /done/, PR aanmaken.

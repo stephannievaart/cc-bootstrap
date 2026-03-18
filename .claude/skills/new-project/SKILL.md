@@ -98,7 +98,7 @@ Maak `docs/decisions/ADR-001-stack-beslissingen.md` aan met:
 
 ### Stap 5. Configureer agents met projectcontext
 
-Elk agent bestand in `.claude/agents/` heeft een `## Projectcontext` sectie met placeholders. Vul deze in voor **alle 17 agents**:
+Elk agent bestand in `.claude/agents/` heeft een `## Projectcontext` sectie met placeholders. Vul deze in voor **alle 12 agents**:
 
 ```markdown
 ## Projectcontext

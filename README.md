@@ -23,26 +23,22 @@ volledige structuur — CLAUDE.md, README.md, agents, skills, rules, doc structu
 
 ## Wat zit erin
 
-### `.claude/agents/` — 17 agents
+### `.claude/agents/` — 12 agents
 
 | Agent | Rol | Stap |
 |-------|-----|------|
 | architect | Planning en impact analyse | 1 |
 | api-design | API contract ontwerp | 1b |
-| test-planner | Test scenarios definiëren (plan mode) | 2 |
-| test-automation | Rode tests bouwen + tests draaien | 3/5 |
+| test-automation | Rode tests bouwen + tests draaien | 2/3/5 |
 | backend-developer | Backend implementatie | 4 |
 | frontend-developer | Frontend implementatie | 4 |
 | ui-designer | UI en accessibility | 4 |
 | documentation | Project docs bijwerken (ADR, README, architecture) | 6 |
 | api-contract-reviewer | Contract compliance | 7 |
 | dba-reviewer | Database en migraties | 7 |
-| resilience-reviewer | Timeouts, retries, circuit breakers | 7 |
+| non-functional-reviewer | Resilience en observability | 7 |
 | security-reviewer | OWASP, auth, secrets | 7 |
-| logging-observability-reviewer | Logging en tracing | 7 |
-| code-quality-reviewer | Duplicatie, complexiteit | 7 |
 | doc-reviewer | Kennissysteem kwaliteit (laatste reviewer) | 7 |
-| architecture-updater | Architectuurdocs genereren | on-demand |
 | build-error-resolver | Build fouten oplossen | on-demand |
 
 ### `.claude/skills/` — 14 skills
@@ -71,11 +67,10 @@ volledige structuur — CLAUDE.md, README.md, agents, skills, rules, doc structu
 ### `.claude/rules/`
 
 ```
-common/     coding-style, development-workflow, error-handling,
-            git-workflow, patterns, security, testing
-java/       conventions, spring-boot       (paths: **/*.java)
-python/     conventions, django            (paths: **/*.py)
-typescript/ conventions, react             (paths: **/*.ts, **/*.tsx, **/*.jsx)
+commons/    coding-style, error-handling, security
+backend/    common + taalspecifiek (java, python, go, kotlin, elixir, dotnet)
+frontend/   common, ui-ux, typescript, react, angular
+testing/    common + taalspecifiek + e2e
 ```
 
 Stack-specifieke rules laden alleen wanneer je in bestanden van die taal werkt.
@@ -84,13 +79,11 @@ Stack-specifieke rules laden alleen wanneer je in bestanden van die taal werkt.
 
 ```
 workflow/         task-workflow.md — volledig werkproces
-architecture/     gegenereerde docs (architecture-updater agent)
+architecture/     api-conventions, resilience, observability, database, testing standards
 decisions/        ADRs
-database/         migration-standards.md
-features/         backlog / in-progress / done
-bugs/             open / in-progress / done
-chores/           backlog / in-progress / done
-agents/           langetermijn geheugen van het project
+work/features/    backlog / in-progress / done
+work/bugs/        open / in-progress / done
+work/chores/      backlog / in-progress / done
 ```
 
 ---

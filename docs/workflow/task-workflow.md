@@ -192,10 +192,8 @@ De review agents draaien parallel en voegen bevindingen toe aan de task doc onde
 |-------|---------|
 | API contract reviewer | Alleen als er een contract is uit Stap 1b |
 | DBA reviewer | Alleen als database geraakt wordt |
-| Resilience reviewer | Altijd bij features en bugs |
+| Non-functional reviewer | Resilience en observability — altijd bij features en bugs |
 | Security reviewer | Altijd |
-| Logging & observability reviewer | Altijd bij features en bugs |
-| Code quality reviewer | Altijd |
 | Doc-reviewer | Altijd — altijd als laatste van de groep. Controleert ook het werk van de documentation agent uit Stap 6 (README correct? ADR correct?) |
 
 **On-demand — geen vast review team lid:**

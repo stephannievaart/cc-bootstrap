@@ -138,10 +138,8 @@ Wanneer de gebruiker terugkomt na `/clear`, orkestreer de stappen:
 - Roep de review agents aan **parallel**:
   - API contract reviewer (als er een contract is)
   - DBA reviewer (als database geraakt)
-  - Resilience reviewer (altijd bij features/bugs)
+  - Non-functional reviewer (resilience + observability, altijd bij features/bugs)
   - Security reviewer (altijd)
-  - Logging & observability reviewer (altijd bij features/bugs)
-  - Code quality reviewer (altijd)
   - **Doc-reviewer als laatste** — controleert ook het werk van de documentation agent uit Stap 6
 - Bevindingen in task doc onder `## Review bevindingen`
 - Bij CRITICAL/HIGH: terug naar Stap 4 (of Stap 1b als API geraakt)
