@@ -1,5 +1,7 @@
 # Testing Rules
 
+Voor teststrategie (wanneer welke testtypen) zie `docs/architecture/testing-standards.md`.
+
 ---
 
 ## TDD — strikt

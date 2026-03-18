@@ -60,6 +60,15 @@ maar `backend/go.md` zegt geen prefix — de Go conventie wint.
 | Bestand | Scope |
 |---|---|
 | `testing/common.md` | TDD workflow, kwaliteitseisen, verboden |
+| `testing/e2e.md` | Playwright e2e patronen |
+| `testing/react.md` | React Testing Library patronen |
+| `testing/angular.md` | Angular TestBed patronen |
+| `testing/java.md` | JUnit 5, Mockito, Spring test slicing |
+| `testing/python.md` | pytest fixtures, async, mocking |
+| `testing/dotnet.md` | xUnit, NSubstitute, WebApplicationFactory |
+| `testing/go.md` | Table-driven, testify, httptest |
+| `testing/kotlin.md` | MockK, coroutines, Turbine |
+| `testing/elixir.md` | ExUnit, Mox, Ecto sandbox |
 
 ---
 
@@ -87,7 +96,7 @@ commons/* → relevante backend/frontend bestanden
 
 ### Test automation agent
 ```
-testing/common.md → relevante taal/framework (testing secties)
+testing/common.md → testing/[taal].md → testing/e2e.md (als e2e relevant)
 ```
 
 ---
@@ -102,3 +111,4 @@ Rules zijn harde regels (do/don't). Architecture docs geven context en rationale
 | `docs/architecture/resilience-patterns.md` | Timeouts, retries, circuit breaker, health checks |
 | `docs/architecture/api-conventions.md` | REST API design, error format, pagination |
 | `docs/architecture/database-standards.md` | Migrations, indexing, naming |
+| `docs/architecture/testing-standards.md` | Teststrategie per laag, per taaktype, TDD aanpak |
