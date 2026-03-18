@@ -178,30 +178,46 @@ Na de review fase (Stap 7):
 - Verplaats de task doc naar `/docs/work/[type]/done/`
 - Update frontmatter status naar `done`
 
-#### 3. Maak PR aan
+#### 3. PR body opbouwen vanuit task doc
 
-Gebruik `gh pr create` met dit format:
+Bouw de PR body op door secties uit de task doc te lezen. Nooit een lege of handmatige PR body — altijd vanuit de task doc.
+
+**Sectie 1 — Beschrijving**
+Neem de inhoud van `## Beschrijving` uit de task doc over.
+
+**Sectie 2 — Acceptatiecriteria**
+Neem de inhoud van `## Acceptatiecriteria` uit de task doc over, opgemaakt als checkbox lijst:
+- `- [ ] criterium 1`
+- `- [ ] criterium 2`
+
+**Sectie 3 — Review bevindingen**
+Samenvatting van `## Review bevindingen` uit de task doc:
+- Alleen bevindingen met status **FIXED** of **ACCEPTED** vermelden
+- Per bevinding: severity, korte beschrijving, status + motivatie bij ACCEPTED
+- Geen open bevindingen (die blokkeren de PR al via stap 1)
+- Als er geen FIXED/ACCEPTED bevindingen zijn: "Geen review bevindingen."
+
+**Sectie 4 — Task doc**
+Link naar de task doc in de repo: `docs/work/[type]/done/[bestandsnaam].md`
+
+#### 4. PR aanmaken
+
+Gebruik `gh pr create` met de opgebouwde body:
 
 ```markdown
-## Samenvatting
-[1-3 zinnen over wat de taak doet en waarom]
+## Beschrijving
+[inhoud uit task doc ## Beschrijving]
 
-## Wijzigingen
-- [belangrijkste wijzigingen, per component/laag]
+## Acceptatiecriteria
+- [ ] [criterium 1]
+- [ ] [criterium 2]
 
-## Test resultaten
-- Unit tests: [groen/rood, coverage %]
-- Integratie tests: [groen/rood]
-- E2e tests: [groen/rood of n.v.t.]
-
-## Review status
-- Security: [✅ geen bevindingen / ⚠️ X bevindingen geaccepteerd]
-- Non-functional: [✅ / ⚠️]
-- DBA: [✅ / ⚠️ / n.v.t.]
-- API contract: [✅ / ⚠️ / n.v.t.]
+## Review bevindingen
+- [severity] [beschrijving] — FIXED
+- [severity] [beschrijving] — ACCEPTED: [motivatie]
 
 ## Task doc
-[link naar task doc in /docs/work/*/done/]
+docs/work/[type]/done/[bestandsnaam].md
 ```
 
 Rapporteer de PR URL.
