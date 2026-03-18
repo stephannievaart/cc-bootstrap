@@ -2,12 +2,14 @@
 name: api-design
 model: sonnet
 maxTurns: 15
-permissionMode: plan
+permissionMode: default
 tools:
   - Read
   - Grep
   - Glob
   - Bash
+  - Edit
+  - Write
 description: API contract ontwerp. Gebruik voor Stap 1b wanneer API wijzigingen nodig zijn.
 ---
 
@@ -80,6 +82,11 @@ Elk contract bevat minimaal:
 - Error responses volgen het format uit `.claude/rules/commons/error-handling.md`
 - Wees expliciet over wat backward compatible is en wat niet
 - Bij twijfel over scope: vraag de mens, vul niet zelf in
+
+## Doet NIET
+
+- Implementatiecode schrijven
+- Bestaande contracten wijzigen zonder goedkeuring
 
 ## Referenties
 

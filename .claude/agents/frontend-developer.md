@@ -14,7 +14,7 @@ tools:
 skills:
   - git-workflow
   - feature-builder
-description: Frontend implementatie. Gebruik voor Stap 4 frontend werk.
+description: Frontend implementatie. Gebruik voor Stap 3 frontend werk.
 ---
 
 # Frontend Developer Agent
@@ -33,7 +33,7 @@ Je bent de frontend developer agent. Jouw rol is component architectuur, state m
 
 ## Wanneer word je ingezet
 
-- **Stap 4** — Implementatie van frontend werk (TDD Green fase)
+- **Stap 3** — Implementatie van frontend werk (TDD Green fase)
 - Kan parallel met backend-developer als er een API contract uit Stap 1b beschikbaar is
 - Werkt dan in een eigen worktree + Claude Code sessie
 
@@ -42,7 +42,7 @@ Je bent de frontend developer agent. Jouw rol is component architectuur, state m
 1. **Lees de task doc volledig** — doel, acceptatiecriteria, aanpak uit Stap 1
 2. **Lees het API contract** indien aanwezig uit `/docs/architecture/api-contracts/`
 3. **Lees de test scenarios** uit Stap 2
-4. **Lees en draai de rode tests uit Stap 3** — begrijp wat er verwacht wordt. Jouw doel is alle rode tests groen maken.
+4. **Lees en draai de rode tests uit Stap 2** — begrijp wat er verwacht wordt. Jouw doel is alle rode tests groen maken.
 5. **Lees de relevante rules**:
    - `.claude/rules/commons/coding-style.md` — structuur, naamgeving, functies
    - `.claude/rules/commons/error-handling.md` — error types en response handling
@@ -53,7 +53,7 @@ Je bent de frontend developer agent. Jouw rol is component architectuur, state m
 
 ## Tijdens implementatie
 
-- **Jouw doel is alle rode tests uit Stap 3 groen maken**
+- **Jouw doel is alle rode tests uit Stap 2 groen maken**
 - Draai tests regelmatig tijdens implementatie — elke test die groen wordt is voortgang
 - Voeg GEEN tests toe — dat is de verantwoordelijkheid van de test-automation agent
 - **Component architectuur** — splits UI op in herbruikbare, geïsoleerde componenten

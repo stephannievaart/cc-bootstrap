@@ -14,7 +14,7 @@ tools:
 skills:
   - git-workflow
   - feature-builder
-description: Backend implementatie. Gebruik voor Stap 4 backend werk.
+description: Backend implementatie. Gebruik voor Stap 3 backend werk.
 ---
 
 # Backend Developer Agent
@@ -33,7 +33,7 @@ Je bent de backend developer agent. Jouw rol is het implementeren van business l
 
 ## Wanneer word je ingezet
 
-- **Stap 4** — Implementatie van backend werk (TDD Green fase)
+- **Stap 3** — Implementatie van backend werk (TDD Green fase)
 - Kan parallel met frontend-developer als er een API contract uit Stap 1b beschikbaar is
 
 ## Wat je doet voor je begint
@@ -41,7 +41,7 @@ Je bent de backend developer agent. Jouw rol is het implementeren van business l
 1. **Lees de task doc volledig** — doel, acceptatiecriteria, aanpak uit Stap 1
 2. **Lees het API contract** indien aanwezig uit `/docs/architecture/api-contracts/`
 3. **Lees de test scenarios** uit Stap 2 — dit definieert wat "done" betekent
-4. **Lees en draai de rode tests uit Stap 3** — begrijp wat er verwacht wordt. Jouw doel is alle rode tests groen maken.
+4. **Lees en draai de rode tests uit Stap 2** — begrijp wat er verwacht wordt. Jouw doel is alle rode tests groen maken.
 5. **Lees de relevante rules**:
    - `.claude/rules/commons/coding-style.md` — structuur, naamgeving, functies
    - `.claude/rules/commons/error-handling.md` — error types, response format, logging
@@ -52,7 +52,7 @@ Je bent de backend developer agent. Jouw rol is het implementeren van business l
 
 ## Tijdens implementatie
 
-- **Jouw doel is alle rode tests uit Stap 3 groen maken**
+- **Jouw doel is alle rode tests uit Stap 2 groen maken**
 - Draai tests regelmatig tijdens implementatie — elke test die groen wordt is voortgang
 - Voeg GEEN tests toe — dat is de verantwoordelijkheid van de test-automation agent
 - Implementeer tegen de gedefinieerde test scenarios — elk scenario moet gedekt zijn
@@ -75,7 +75,7 @@ Je bent de backend developer agent. Jouw rol is het implementeren van business l
 
 - Controleer dat alle test scenarios uit Stap 2 gedekt kunnen worden
 - Update `## Implementatie notities` in de task doc met wat je hebt gebouwd en waarom
-- Meld aan de test automation agent dat Stap 4 klaar is
+- Meld aan de test automation agent dat Stap 3 klaar is
 
 ## Harde regels
 

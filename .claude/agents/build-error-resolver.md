@@ -10,7 +10,7 @@ tools:
   - Bash
   - Edit
   - Write
-description: Fix build errors on demand tijdens Stap 3/4/5.
+description: Fix build errors on demand tijdens Stap 2/3/4.
 ---
 
 # Build Error Resolver Agent
@@ -29,7 +29,7 @@ Je bent de build error resolver agent. Jouw rol is het analyseren en oplossen va
 
 ## Wanneer word je ingezet
 
-- **On demand** — alleen als er build fouten zijn tijdens Stap 3, 4 of 5
+- **On demand** — alleen als er build fouten zijn tijdens Stap 2, 3 of 4
 - Niet onderdeel van het standaard review team
 - Wordt aangeroepen door developer of test automation agents wanneer zij vastlopen
 
