@@ -34,7 +34,7 @@ A complete Claude Code project bootstrap system for microservice development. Th
 - **UI designer agent** — design system, accessibility, visual consistency
 - **Test automation agent** — defines acceptance test scenarios BEFORE implementation, writes and runs tests AFTER
 
-### Quality review — Stap 6 (plan mode, parallel, findings fed back to developer agents)
+### Quality review — Stap 7 (plan mode, parallel, findings fed back to developer agents)
 
 | Agent | Wanneer |
 |-------|---------|
@@ -89,9 +89,9 @@ A complete Claude Code project bootstrap system for microservice development. Th
 ```
 /docs
   /work
-    /features         ← backlog / in-progress / done
-    /bugs             ← open / in-progress / done
-    /chores           ← backlog / in-progress / done
+    /features         ← backlog / done
+    /bugs             ← backlog / done
+    /chores           ← backlog / done
   /decisions          ← ADRs (Architecture Decision Records)
   /workflow           ← task-workflow.md — het centrale werkproces
   /architecture
@@ -104,8 +104,8 @@ A complete Claude Code project bootstrap system for microservice development. Th
     testing-standards.md
 
 .claude/
-  /agents             ← 12 agent .md definition files
-  /skills             ← 14 skill folders with SKILL.md
+  /agents             ← 13 agent .md definition files
+  /skills             ← 17 skill folders with SKILL.md
   /hooks
     /scripts
       check-review-complete.sh   ← blokkeert PR bij open CRITICAL/HIGH
@@ -126,7 +126,7 @@ CLAUDE.md             ← lean, hard rules + pointers only
 Interviews user in groups before creating feature doc. Enforces one-feature-at-a-time rule. Parks new ideas in /backlog without derailing current work. Auto-triggers on "I want to add", "we need a", "new feature".
 
 ### capture-bug
-Captures bugs with severity classification (P1-P4). Parks in /bugs/open. P1 flags for possible work interruption. P3/P4 parks silently. Auto-triggers on "bug", "broken", "not working".
+Captures bugs with severity classification (P1-P4). Parks in /bugs/backlog. P1 flags for possible work interruption. P3/P4 parks silently. Auto-triggers on "bug", "broken", "not working".
 
 ### capture-chore
 Determines if a chore needs a doc (small = no doc, just commit; large = doc required). Classifies type (dependency-upgrade, refactor, tech-debt, infra, ci-cd, security-patch) and risk (low/medium/high). Parks large chores in /chores/backlog. Flags high-risk chores explicitly. Determines which review agents are needed based on what changes. Auto-triggers on "upgrade", "refactor", "tech debt", "deprecated", "CVE", "cleanup".
@@ -290,10 +290,10 @@ Volledig beschreven in `/docs/workflow/task-workflow.md`. Samenvatting:
 
 ### Permission modes per fase
 ```
-Plan mode   → Stap 1, 1b, 2, 6  (denken, ontwerpen, reviewen)
-Normal mode → Stap 3, 4, 5, 7   (bouwen, testen, afronden)
+Plan mode   → Stap 1, 1b, 2, 7  (denken, ontwerpen, reviewen)
+Normal mode → Stap 3, 4, 5, 6, 8   (testen, bouwen, documenteren, afronden)
 ```
-Review agents in Stap 6 mogen nooit code aanpassen — ook niet als de fix triviaal lijkt.
+Review agents in Stap 7 mogen nooit code aanpassen — ook niet als de fix triviaal lijkt.
 
 ### Stap 0 — Capture + branch
 `plan` — capture skill → git-capture → doc in backlog + branch lokaal & remote
@@ -307,27 +307,30 @@ Alleen indien interface geraakt. API design agent schrijft contract ter goedkeur
 ### Stap 2 — Test scenarios `plan mode`
 Test automation agent definieert scenarios op basis van acceptatiecriteria. Nog geen testcode.
 
-### Stap 3 — Implementatie `normal mode`
-Developer agents implementeren tegen contract + test scenarios. Parallel indien API contract beschikbaar.
+### Stap 3 — Tests bouwen (rode tests) `normal mode`
+Test automation agent bouwt tests op basis van scenarios uit Stap 2. Tests moeten FALEN — er is nog geen implementatie (TDD Red).
 
-### Stap 4+5 — Tests bouwen en draaien `normal mode`
-Test automation agent bouwt en draait tests. Rood → terug naar Stap 3. Pas bij groen: door.
+### Stap 4 — Implementatie `normal mode`
+Developer agents implementeren tegen contract + test scenarios. Doel: alle rode tests groen maken (TDD Green). Parallel indien API contract beschikbaar.
 
-### Stap 6 — Review (groep) `plan mode`
+### Stap 5 — Tests draaien + refactor `normal mode`
+Test automation agent draait volledige test suite. Rood → terug naar Stap 4. Pas bij groen: door.
+
+### Stap 6 — Documentation `normal mode`
+Documentation agent: ADR finaliseren, README bijwerken, architecture docs updaten.
+
+### Stap 7 — Review (groep) `plan mode`
 Review agents draaien parallel. Doc-reviewer altijd als laatste. Bevindingen in task doc:
 - `CRITICAL` / `HIGH` — altijd fixen, blokkeert merge
 - `WARN` / `INFO` / `LOW` — fixen of bewust accepteren met motivatie
 - Niets wordt stilzwijgend genegeerd
 - Conflicten: agents zoeken eerst consensus. Onoplosbaar → escaleert naar mens
-- Na review: architect bepaalt impact → API geraakt: terug Stap 1b, implementatie: terug Stap 3
+- Na review: architect bepaalt impact → API geraakt: terug Stap 1b, implementatie: terug Stap 4
 
 Reviewers: API contract (conditioneel), DBA (conditioneel), Non-functional, Security, Doc-reviewer
 
-### Stap 7a — Afronden `normal mode`
-Documentatie agent: controleert task doc volledigheid, finaliseert ADR, doc naar /done/, PR aanmaken.
-
-### Stap 7b — Doc review `acceptEdits`
-Doc-reviewer agent: CLAUDE.md check, verwijzingen valideren, lessons learned verwerken in standards/skills/agents, verouderde docs markeren, structuur bewaken. Schrijft rapport in task doc. **Dit is het moment waarop het project zichzelf slimmer maakt.**
+### Stap 8 — PR + finalisatie `normal mode`
+Task doc volledigheid controleren, doc naar /done/, PR aanmaken.
 
 ### Afwijkingen
 - **Bug**: API design alleen als fix interface raakt

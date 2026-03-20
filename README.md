@@ -58,6 +58,10 @@ volledige structuur — CLAUDE.md, README.md, agents, skills, rules, doc structu
 | git-switch-feature | Veilig switchen tussen taken | `/git-switch-feature` |
 | git-workflow | Git conventies voor alle developer agents | intern |
 | git-capture | Branch + worktree aanmaken bij capture | intern |
+| git-worktree-cleanup | Worktrees opruimen van gemerged branches | `/git-worktree-cleanup` |
+| post-merge | Afronding na gemerged PR | `/post-merge` |
+| quick-fix | Lichtgewicht pad voor triviale wijzigingen | `/quick-fix` |
+| doc-audit | Periodieke audit van het kennissysteem | `/doc-audit` |
 
 ### `.claude/hooks/`
 
@@ -81,9 +85,9 @@ Stack-specifieke rules laden alleen wanneer je in bestanden van die taal werkt.
 workflow/         task-workflow.md — volledig werkproces
 architecture/     api-conventions, resilience, observability, database, testing standards
 decisions/        ADRs
-work/features/    backlog / in-progress / done
-work/bugs/        open / in-progress / done
-work/chores/      backlog / in-progress / done
+work/features/    backlog / done
+work/bugs/        backlog / done
+work/chores/      backlog / done
 ```
 
 ---
