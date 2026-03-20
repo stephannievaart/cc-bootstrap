@@ -23,7 +23,7 @@ volledige structuur — CLAUDE.md, README.md, agents, skills, rules, doc structu
 
 ## Wat zit erin
 
-### `.claude/agents/` — 12 agents
+### `.claude/agents/` — 13 agents
 
 | Agent | Rol | Stap |
 |-------|-----|------|

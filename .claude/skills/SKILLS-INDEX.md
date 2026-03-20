@@ -22,7 +22,7 @@
 | start-work | ja | Orkestreert het volledige werkproces: planning → API design → tests → implementatie → review → PR. | doc-review |
 | status | ja | Toont een compleet overzicht van de projectstatus — in-progress, backlog, bugs per severity, worktrees. | — |
 
-**Noot bij "Roept aan":** Alleen directe skill-aanroepen zijn vermeld. start-work roept daarnaast diverse agents aan (architect, api-design, test-automation, developers, documentation, reviewers) die op hun beurt feature-builder en git-workflow laden.
+**Noot bij "Roept aan":** Alleen directe skill-aanroepen zijn vermeld. start-work roept daarnaast diverse agents aan (architect, api-design, test-automation, developers, documentation, doc-reviewer, reviewers) die op hun beurt feature-builder en git-workflow laden.
 
 ---
 
