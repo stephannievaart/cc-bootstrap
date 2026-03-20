@@ -150,9 +150,10 @@ mkdir -p docs/work/chores
 mkdir -p docs/decisions
 mkdir -p docs/workflow
 mkdir -p docs/architecture/api-contracts
+mkdir -p docs/audits
 ```
 
-### Stap 7b. CI/CD afhandelen
+### Stap 8. CI/CD afhandelen
 
 Op basis van het antwoord op de CI/CD vraag (vraag 20):
 
@@ -169,23 +170,23 @@ Op basis van het antwoord op de CI/CD vraag (vraag 20):
   - **Acceptatiecriteria:** pipeline draait op elke push, tests zijn verplicht groen voor merge, deploy naar staging is geautomatiseerd
   - **Urgentie:** niet blokkerend voor development, wel nodig voor eerste deploy
 
-### Stap 8. Git herinitialiseren
+### Stap 9. Git herinitialiseren
 
 Het project moet met een schone git history beginnen. De huidige `.git` verwijst nog naar de bootstrap repo — die moet weg.
 
-**Stap 8a — Verwijder de bootstrap git history:**
+**Stap 9a — Verwijder de bootstrap git history:**
 ```bash
 rm -rf .git
 ```
 
-**Stap 8b — Initialiseer een nieuw repo:**
+**Stap 9b — Initialiseer een nieuw repo:**
 ```bash
 git init
 git add -A
 git commit -m "docs: project bootstrap — [projectnaam]"
 ```
 
-**Stap 8c — Remote instellen:**
+**Stap 9c — Remote instellen:**
 Vraag de gebruiker: "Heb je al een repo aangemaakt voor dit project? Zo ja, wat is de URL?"
 
 Als de gebruiker een URL geeft:
@@ -201,7 +202,7 @@ gh repo create [projectnaam] --private --source=. --remote=origin --push
 
 **Waarschuwing:** Maak NOOIT een publiek repo aan zonder expliciete toestemming. Default is private.
 
-### Stap 9. Bevestig aan de gebruiker
+### Stap 10. Bevestig aan de gebruiker
 
 Geef een samenvatting:
 - CLAUDE.md inhoud (kort)
@@ -218,6 +219,6 @@ Geef een samenvatting:
 - Sla nooit een interviewgroep over
 - Maak geen aannames — vraag als iets onduidelijk is
 - Genereer nooit code — dit is alleen scaffolding en configuratie
-- Lees CLAUDE.md.template **voordat** je het verwijdert — je hebt de inhoud nodig voor stap 3
+- Lees CLAUDE.md.template **voordat** je het verwijdert — je hebt de inhoud nodig voor Stap 3
 - Alle stappen worden **in volgorde** uitgevoerd — niet parallel
 - Eindig altijd met de git herinitialisatie — het project start clean

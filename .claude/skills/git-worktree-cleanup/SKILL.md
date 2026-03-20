@@ -70,6 +70,26 @@ git worktree prune
 
 ---
 
+## Bulk cleanup (optioneel)
+
+Als er veel worktrees zijn, gebruik dit script om alle gemerged worktrees in één keer op te ruimen:
+
+```bash
+# Alle gemerged worktrees opruimen
+for wt in $(git worktree list --porcelain | grep "^worktree" | awk '{print $2}'); do
+  branch=$(git -C "$wt" branch --show-current 2>/dev/null)
+  if [ -n "$branch" ] && git branch --merged main | grep -q "$branch"; then
+    echo "Removing merged worktree: $wt ($branch)"
+    git worktree remove "$wt"
+  fi
+done
+git worktree prune
+```
+
+**Toon altijd eerst het overzicht aan de gebruiker en vraag bevestiging** — ook bij bulk cleanup.
+
+---
+
 ## Regels
 
 - Verwijder NOOIT de hoofdworktree (main checkout)

@@ -103,7 +103,7 @@ Wanneer de gebruiker terugkomt na `/clear`, orkestreer de stappen:
 - **Wacht op goedkeuring van de gebruiker voor je doorgaat**
 
 ### Stap 2 — Test scenarios (plan mode)
-- Roep de **test-planner agent** aan (plan mode)
+- Roep de **test-automation agent** aan in **plan mode** (nog geen testcode schrijven, alleen scenarios vastleggen in de task doc onder `## Test scenarios`)
 - Scenarios worden geschreven in de task doc onder `## Test scenarios`
 - Gebaseerd op acceptatiecriteria uit de doc
 
@@ -131,7 +131,7 @@ Wanneer de gebruiker terugkomt na `/clear`, orkestreer de stappen:
 - Roep de **documentation agent** aan
 - Finaliseert ADR indien aanwezig
 - Bijwerken README.md indien relevant
-- Triggert architecture-updater indien structuurwijzigingen
+- Meldt aan de documentation agent welke structuurwijzigingen er zijn zodat die ze kan verwerken in de relevante architecture docs
 - **Geen PR, geen task doc verplaatsing** — dat gebeurt in Stap 8
 
 ### Stap 7 — Review (plan mode)

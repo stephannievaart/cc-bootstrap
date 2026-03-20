@@ -89,18 +89,9 @@ Dit zorgt ervoor dat de branch direct op de remote staat. Andere sessies/worktre
 
 Als de push faalt: **STOP** — ga niet door naar Stap 8.
 
-### Stap 8 — Terug naar vorige branch
-```bash
-git checkout $PREVIOUS_BRANCH
-```
+### Stap 8 — Worktree aanmaken
 
-Als de vorige branch `main` was en er was een WIP commit, dan is er niets om naar terug te keren — de gebruiker was al op main.
-
----
-
-## Worktree aanmaken (optioneel)
-
-Als de hoofdrepo een worktree setup gebruikt, maak ook een worktree aan:
+Maak een worktree aan voor de nieuwe branch:
 
 ```bash
 # Bepaal repo naam
@@ -118,6 +109,13 @@ ln -s $(git rev-parse --show-toplevel)/CLAUDE.md ${WORKTREE_PATH}/CLAUDE.md
 ln -s $(git rev-parse --show-toplevel)/.claude ${WORKTREE_PATH}/.claude
 ```
 
+### Stap 9 — Terug naar vorige branch
+```bash
+git checkout $PREVIOUS_BRANCH
+```
+
+Als de vorige branch `main` was en er was een WIP commit, dan is er niets om naar terug te keren — de gebruiker was al op main.
+
 ---
 
 ## Foutafhandeling
@@ -131,6 +129,16 @@ Als `git push` faalt:
   > `git push -u origin [branch_name]`
   > Ga daarna pas verder."
 - **Stop hier — maak geen worktree aan en ga niet terug naar de vorige branch.**
+
+### Worktree aanmaken faalt
+Als `git worktree add` faalt:
+- Schrijf bovenaan de task doc:
+  `> TODO: Worktree aanmaak mislukt — maak handmatig een worktree aan voor je /start-work uitvoert. Draai: git worktree add [WORKTREE_PATH] [branch_name] && ln -s $(git rev-parse --show-toplevel)/CLAUDE.md [WORKTREE_PATH]/CLAUDE.md && ln -s $(git rev-parse --show-toplevel)/.claude [WORKTREE_PATH]/.claude`
+- Meld aan de gebruiker:
+  > "Worktree aanmaak mislukt. `/start-work` vereist een worktree. Maak deze handmatig aan:
+  > `git worktree add [WORKTREE_PATH] [branch_name]`
+  > en maak daarna de symlinks voor CLAUDE.md en .claude/."
+- **Ga wel door naar Stap 9** (terug naar vorige branch) — de branch en push zijn gelukt.
 
 ### Branch bestaat al
 Als `git checkout -b` faalt omdat de branch al bestaat:

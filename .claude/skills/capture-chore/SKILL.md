@@ -83,9 +83,9 @@ Op basis van wat er geraakt wordt:
 |-----------|-------------|
 | Database migratie | DBA reviewer |
 | Security gerelateerd | Security reviewer (altijd bij security-patch type) |
-| Infra/deployment | Resilience reviewer |
-| Code structuur | Code quality reviewer |
-| Dependencies | Security reviewer + Code quality reviewer |
+| Infra/deployment | Non-functional reviewer |
+| Code structuur | Architect |
+| Dependencies | Security reviewer + Architect |
 
 Noteer welke agents nodig zijn in de chore doc.
 

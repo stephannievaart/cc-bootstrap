@@ -132,48 +132,7 @@ claude  # frontend-developer agent
 
 ## Worktree opruimen
 
-### Na merge
-Wanneer een branch gemerged is naar main:
-
-```bash
-# Vanuit de hoofdrepo
-cd /pad/naar/hoofdrepo
-
-# Worktree verwijderen
-git worktree remove ../[repo-naam]--[branch-met-streepjes]
-
-# Opruimen van stale entries
-git worktree prune
-
-# Branch verwijderen (optioneel, als remote ook verwijderd is)
-git branch -d [branch-naam]
-```
-
-### Gemerged detecteren
-Controleer welke worktree branches al gemerged zijn:
-
-```bash
-# Lijst van alle worktrees
-git worktree list
-
-# Check per branch of die gemerged is
-git branch --merged main
-```
-
-Worktrees waarvan de branch in `--merged` staat zijn kandidaat voor cleanup.
-
-### Bulk cleanup
-```bash
-# Alle gemerged worktrees opruimen
-for wt in $(git worktree list --porcelain | grep "^worktree" | awk '{print $2}'); do
-  branch=$(git -C "$wt" branch --show-current 2>/dev/null)
-  if [ -n "$branch" ] && git branch --merged main | grep -q "$branch"; then
-    echo "Removing merged worktree: $wt ($branch)"
-    git worktree remove "$wt"
-  fi
-done
-git worktree prune
-```
+Gebruik `/git-worktree-cleanup` voor interactieve cleanup van gemerged worktrees.
 
 ---
 

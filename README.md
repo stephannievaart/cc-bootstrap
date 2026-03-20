@@ -41,7 +41,7 @@ volledige structuur — CLAUDE.md, README.md, agents, skills, rules, doc structu
 | doc-reviewer | Kennissysteem kwaliteit (laatste reviewer) | 7 |
 | build-error-resolver | Build fouten oplossen | on-demand |
 
-### `.claude/skills/` — 14 skills
+### `.claude/skills/` — 17 skills
 
 | Skill | Doel | Slash command |
 |-------|------|-------------|
