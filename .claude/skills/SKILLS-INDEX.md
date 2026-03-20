@@ -4,6 +4,7 @@
 
 | Naam | Aanroepbaar door gebruiker | Doel | Roept aan |
 |------|---------------------------|------|-----------|
+| abandon-task | ja | Abandon een vastgelopen taak — markeert als abandoned, ruimt branch en worktree op. | — |
 | capture-bug | ja | Vangt bugs op met P1–P4 severity classificatie en parkeert ze in docs/work/bugs/. | git-capture |
 | capture-chore | ja | Registreert technische chores, bepaalt grootte (klein=direct, groot=via pipeline) en parkeert grote chores in docs/work/chores/. | git-capture |
 | doc-audit | ja | Periodieke audit van het volledige kennissysteem — architecture vs. codebase, ADR status, cross-task patronen, systeem-checks. | — |
@@ -76,6 +77,7 @@ De skills vormen samen een end-to-end workflow van idee tot opgeruimde branch. H
 
 | Skill | Wanneer | Relatie tot hoofdflow |
 |-------|---------|---------------------|
+| abandon-task | Vastgelopen taak abandonen — branch, worktree, doc opruimen | Alternatief einde — taak wordt abandoned i.p.v. gemerged |
 | quick-fix | Triviale wijzigingen die het volledige proces niet rechtvaardigen | Bypass — geen task doc, geen agents |
 | status | Op elk moment — projectoverzicht | Informatief — geen wijzigingen |
 | git-switch-feature | Tijdens werk — wisselen naar andere taak | WIP commit + checkout of worktree-verwijzing |

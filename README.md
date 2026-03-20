@@ -41,10 +41,11 @@ volledige structuur — CLAUDE.md, README.md, agents, skills, rules, doc structu
 | doc-reviewer | Kennissysteem kwaliteit (laatste reviewer) | 7 |
 | build-error-resolver | Build fouten oplossen | on-demand |
 
-### `.claude/skills/` — 17 skills
+### `.claude/skills/` — 18 skills
 
 | Skill | Doel | Slash command |
 |-------|------|-------------|
+| abandon-task | Vastgelopen taak abandonen + opruimen | `/abandon-task` |
 | new-project | Project bootstrap interview + scaffold | `/new-project` |
 | status | Volledig project status overzicht | `/status` |
 | new-feature | Feature definiëren + doc aanmaken | `/new-feature` |

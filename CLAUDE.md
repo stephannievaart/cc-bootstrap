@@ -22,7 +22,7 @@ Draai `/new-project` om het bootstrap interview te starten. Dit genereert:
 ## Wat zit erin
 
 - **13 agents** — architect, developers, reviewers, documentation
-- **17 skills** — feature capture, bug capture, git workflow, worktree beheer, post-merge, quick-fix
+- **18 skills** — feature capture, bug capture, git workflow, worktree beheer, post-merge, quick-fix, abandon-task
 - **Rules** — coding style, security, testing, git workflow + stack-specifiek (Java/Python/TypeScript)
 - **Doc structuur** — features, bugs, chores, ADRs, architecture docs
 
