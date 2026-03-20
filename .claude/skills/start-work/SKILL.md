@@ -151,9 +151,9 @@ Dit wordt door start-work zelf georkestreerd (geen aparte agent):
 1. **Task doc volledigheid controleren** — check dat alle verplichte secties ingevuld zijn:
    - `## Beschrijving`, `## Acceptatiecriteria`, `## Aanpak`, `## Test scenarios`, `## Implementatie notities`, `## Review bevindingen`
    - Als secties ontbreken of leeg zijn: **meld dit aan gebruiker** — vul ze niet zelf in
-2. **Task doc status wijzigen** — wijzig frontmatter `status: in-progress` naar `status: done`
-3. **PR aanmaken** — `gh pr create --title "[type]: [beschrijving]" --body "$(cat docs/work/[type]/[task-doc].md)"`
+2. **PR aanmaken** — `gh pr create --title "[type]: [beschrijving]" --body "$(cat docs/work/[type]/[task-doc].md)"`
    - Controleer eerst of er nog open CRITICAL of HIGH bevindingen zijn — zo ja: **maak GEEN PR**
+3. De task doc blijft op `status: in-progress` totdat de PR gemerged is. Voer daarna `/post-merge` uit om de taak definitief af te sluiten.
 
 ---
 

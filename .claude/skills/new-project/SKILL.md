@@ -125,7 +125,7 @@ Daarnaast per agent categorie:
 - Voeg data sensitivity level toe (PII, financieel, medisch)
 - Voeg auth mechanisme toe indien besproken
 
-**Resilience reviewer**:
+**Non-functional reviewer**:
 - Voeg externe dependencies toe (welke services, latency targets)
 - Voeg uptime vereiste toe
 
