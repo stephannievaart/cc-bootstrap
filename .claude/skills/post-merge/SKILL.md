@@ -7,7 +7,7 @@ user-invocable: true
 
 # Post-Merge — Afronding na gemerged PR
 
-Je rondt een taak af nadat de PR gemerged is. De task doc heeft al `status: done` (meegemerged via de PR). Deze skill doet alleen cleanup: task doc verplaatsen naar done/, branch verwijderen, worktree opruimen, en main updaten.
+Je rondt een taak af nadat de PR gemerged is. Deze skill verifieert dat de task doc `status: done` heeft, verplaatst hem naar done/, verwijdert de branch, ruimt de worktree op, en trekt main bij.
 
 ---
 
@@ -47,7 +47,12 @@ Als er geen match is: meld dit en ga door met Stap 4 (branch cleanup) — niet e
 
 ## Stap 3 — Verplaats task doc naar done
 
-De task doc heeft al `status: done` — dat is meegemerged via de PR. Hier alleen verplaatsen.
+Controleer eerst of de task doc inderdaad status: done heeft:
+  grep "^status:" docs/work/[type]/[bestandsnaam]
+
+Als de status niet done is: meld dit aan de gebruiker ("De task doc heeft nog status [huidige status]. De statuswijziging naar done hoort meegemerged te zijn via de PR. Controleer de merge history of pas de status handmatig aan voor je verdergaat.") en stop — verplaats de doc niet.
+
+Als de status done is, verplaats dan de doc:
 
 Bepaal het type (features, bugs, of chores) op basis van het huidige pad en verplaats:
 ```bash

@@ -50,9 +50,15 @@ Stel de vragen in groepen. Wacht op antwoord per groep voordat je doorgaat. Vat 
 
 ## Na het interview — stap voor stap
 
+### Stap 0. Lees de bootstrap templates
+
+**Doe dit EERST, voordat je iets verwijdert.**
+
+Lees en onthoud de inhoud van CLAUDE.md.template en README.md voordat je verder gaat. Je hebt de inhoud van CLAUDE.md.template nodig voor Stap 3. Als je dit bestand verwijdert voordat je het hebt gelezen, heb je geen basis meer voor de CLAUDE.md.
+
 ### Stap 1. Bootstrap bestanden opruimen
 
-Verwijder bestanden die alleen voor de bootstrap bedoeld zijn:
+Verwijder bestanden die alleen voor de bootstrap bedoeld zijn (pas NA Stap 0):
 ```bash
 rm -f SESSION-SUMMARY.md
 rm -f CLAUDE.md.template
@@ -65,14 +71,34 @@ rm -f README.md
 
 ### Stap 2. Irrelevante rules opruimen
 
-Verwijder de `rules/` mappen die niet bij de gekozen tech stack horen:
+De rules zijn georganiseerd per categorie: rules/backend/, rules/frontend/, rules/testing/, rules/commons/. Verwijder de bestanden die niet bij de gekozen tech stack horen. rules/commons/ blijft altijd — die is stack-onafhankelijk.
 
-- Als **Java** gekozen: verwijder `rules/python/` en `rules/typescript/`
-- Als **Python** gekozen: verwijder `rules/java/` en `rules/typescript/`
-- Als **TypeScript** gekozen: verwijder `rules/java/` en `rules/python/`
-- Als **andere taal**: verwijder alle drie (`rules/java/`, `rules/python/`, `rules/typescript/`)
+Backend rules — houd alleen de gekozen taal/framework, verwijder de rest:
+- Java + Spring Boot: houd java-conventions.md, java-spring-boot.md, common.md — verwijder alle andere backend/*.md
+- Java zonder framework: houd java-conventions.md, common.md — verwijder alle andere backend/*.md
+- Python + FastAPI: houd python-conventions.md, python-fastapi.md, common.md — verwijder alle andere backend/*.md
+- Python zonder framework: houd python-conventions.md, common.md — verwijder alle andere backend/*.md
+- .NET / C#: houd dotnet-conventions.md, dotnet-aspnet.md, common.md — verwijder alle andere backend/*.md
+- Kotlin: houd kotlin.md, common.md — verwijder alle andere backend/*.md
+- Go: houd go.md, common.md — verwijder alle andere backend/*.md
+- Elixir + Phoenix: houd elixir-conventions.md, elixir-phoenix.md, common.md — verwijder alle andere backend/*.md
 
-De `rules/common/` map blijft altijd — die is stack-onafhankelijk.
+Frontend rules — als er geen frontend is, verwijder de hele rules/frontend/ map. Anders houd alleen het gekozen framework:
+- React / Next.js: houd react.md, typescript.md, common.md, ui-ux.md — verwijder angular.md
+- Angular: houd angular.md, typescript.md, common.md, ui-ux.md — verwijder react.md
+- Geen frontend: verwijder hele rules/frontend/ map
+
+Testing rules — houd alleen de talen die actief zijn in het project. Verwijder testing rules voor talen die je hierboven hebt verwijderd. Houd altijd testing/common.md en testing/e2e.md.
+
+Voorbeeld voor Java + Spring Boot + geen frontend:
+  rm .claude/rules/backend/python-conventions.md .claude/rules/backend/python-fastapi.md
+  rm .claude/rules/backend/dotnet-conventions.md .claude/rules/backend/dotnet-aspnet.md
+  rm .claude/rules/backend/kotlin.md .claude/rules/backend/go.md
+  rm .claude/rules/backend/elixir-conventions.md .claude/rules/backend/elixir-phoenix.md
+  rm -rf .claude/rules/frontend/
+  rm .claude/rules/testing/python.md .claude/rules/testing/dotnet.md
+  rm .claude/rules/testing/kotlin.md .claude/rules/testing/go.md
+  rm .claude/rules/testing/elixir.md .claude/rules/testing/react.md .claude/rules/testing/angular.md
 
 ### Stap 3. Genereer CLAUDE.md
 
@@ -108,13 +134,21 @@ Elk agent bestand in `.claude/agents/` heeft een `## Projectcontext` sectie met 
 - **Database:** [type] met [ORM]
 - **Integraties:** [services, brokers, cache]
 - **Observability:** [stack]
-- **Rules:** lees `.claude/rules/[taal]/` voor stack-specifieke conventies
+- **Rules:** lees `.claude/rules/commons/` voor algemene conventies en `.claude/rules/backend/` voor stack-specifieke conventies
 ```
 
 Daarnaast per agent categorie:
 
 **Developer agents** (backend, frontend, ui-designer):
-- Voeg de relevante stack-specifieke rules referentie toe: `rules/[taal]/conventions.md` en `rules/[taal]/[framework].md`
+- Voeg de relevante stack-specifieke rules referentie toe op basis van de gekozen stack:
+  - Java: rules/backend/java-conventions.md en rules/backend/java-spring-boot.md
+  - Python: rules/backend/python-conventions.md en rules/backend/python-fastapi.md (indien FastAPI)
+  - .NET: rules/backend/dotnet-conventions.md en rules/backend/dotnet-aspnet.md
+  - Kotlin: rules/backend/kotlin.md
+  - Go: rules/backend/go.md
+  - Elixir: rules/backend/elixir-conventions.md en rules/backend/elixir-phoenix.md (indien Phoenix)
+  - React frontend: rules/frontend/react.md en rules/frontend/typescript.md
+  - Angular frontend: rules/frontend/angular.md en rules/frontend/typescript.md
 - Als er geen frontend is: noteer in frontend-developer en ui-designer dat ze niet actief zijn voor dit project
 
 **DBA reviewer**:
@@ -219,6 +253,6 @@ Geef een samenvatting:
 - Sla nooit een interviewgroep over
 - Maak geen aannames — vraag als iets onduidelijk is
 - Genereer nooit code — dit is alleen scaffolding en configuratie
-- Lees CLAUDE.md.template **voordat** je het verwijdert — je hebt de inhoud nodig voor Stap 3
+- **Voer Stap 0 altijd als eerste uit** — lees CLAUDE.md.template voordat Stap 1 het verwijdert
 - Alle stappen worden **in volgorde** uitgevoerd — niet parallel
 - Eindig altijd met de git herinitialisatie — het project start clean

@@ -24,9 +24,9 @@ Deze skill wordt geladen door alle developer agents (backend-developer, frontend
 - Noteer specifiek:
   - **Acceptatiecriteria** — dit definieert "done"
   - **Scope (wel/niet)** — dit definieert de grenzen
-  - **Aanpak** (Stap 1 output) — dit is het plan van de architect
-  - **API contract** (Stap 1b output, indien aanwezig) — implementeer hier tegenaan
-  - **Test scenarios** (Stap 2 output) — je code moet deze scenarios dekken
+  - **Aanpak** — het plan van de architect (sectie ## Aanpak)
+  - **API contract** — indien aanwezig in docs/architecture/api-contracts/[branch-naam].md — implementeer hier tegenaan
+  - **Test scenarios** — je code moet deze scenarios dekken (sectie ## Test scenarios)
 
 ### 2. Controleer dat de taak in-progress is
 - De gevonden task doc moet `status: in-progress` hebben
@@ -90,7 +90,7 @@ Loop elk acceptatiecriterium uit de task doc na:
 - Is het gedeeltelijk geïmplementeerd? → beschrijf wat er nog mist
 
 ### 10. Handoff voorbereiden
-Bereid de handoff voor naar de test automation agent (Stap 4):
+Bereid de handoff voor naar de test automation agent:
 - Zijn alle scenarios uit `## Test scenarios` adresseerbaar?
 - Zijn er nieuwe edge cases ontdekt tijdens implementatie? → voeg toe aan de doc
 - Zijn er specifieke test configuraties nodig?
