@@ -69,38 +69,7 @@ rm -f README.md
 **CLAUDE.md.template** is de bron voor de nieuwe CLAUDE.md — na generatie niet meer nodig.
 **README.md** beschrijft de bootstrap repo — het project krijgt zijn eigen README.
 
-### Stap 2. Irrelevante rules opruimen
-
-De rules zijn georganiseerd per categorie: rules/backend/, rules/frontend/, rules/testing/, rules/commons/. Verwijder de bestanden die niet bij de gekozen tech stack horen. rules/commons/ blijft altijd — die is stack-onafhankelijk.
-
-Backend rules — houd alleen de gekozen taal/framework, verwijder de rest:
-- Java + Spring Boot: houd java-conventions.md, java-spring-boot.md, common.md — verwijder alle andere backend/*.md
-- Java zonder framework: houd java-conventions.md, common.md — verwijder alle andere backend/*.md
-- Python + FastAPI: houd python-conventions.md, python-fastapi.md, common.md — verwijder alle andere backend/*.md
-- Python zonder framework: houd python-conventions.md, common.md — verwijder alle andere backend/*.md
-- .NET / C#: houd dotnet-conventions.md, dotnet-aspnet.md, common.md — verwijder alle andere backend/*.md
-- Kotlin: houd kotlin.md, common.md — verwijder alle andere backend/*.md
-- Go: houd go.md, common.md — verwijder alle andere backend/*.md
-- Elixir + Phoenix: houd elixir-conventions.md, elixir-phoenix.md, common.md — verwijder alle andere backend/*.md
-
-Frontend rules — als er geen frontend is, verwijder de hele rules/frontend/ map. Anders houd alleen het gekozen framework:
-- React / Next.js: houd react.md, typescript.md, common.md, ui-ux.md — verwijder angular.md
-- Angular: houd angular.md, typescript.md, common.md, ui-ux.md — verwijder react.md
-- Geen frontend: verwijder hele rules/frontend/ map
-
-Testing rules — houd alleen de talen die actief zijn in het project. Verwijder testing rules voor talen die je hierboven hebt verwijderd. Houd altijd testing/common.md en testing/e2e.md.
-
-Voorbeeld voor Java + Spring Boot + geen frontend:
-  rm .claude/rules/backend/python-conventions.md .claude/rules/backend/python-fastapi.md
-  rm .claude/rules/backend/dotnet-conventions.md .claude/rules/backend/dotnet-aspnet.md
-  rm .claude/rules/backend/kotlin.md .claude/rules/backend/go.md
-  rm .claude/rules/backend/elixir-conventions.md .claude/rules/backend/elixir-phoenix.md
-  rm -rf .claude/rules/frontend/
-  rm .claude/rules/testing/python.md .claude/rules/testing/dotnet.md
-  rm .claude/rules/testing/kotlin.md .claude/rules/testing/go.md
-  rm .claude/rules/testing/elixir.md .claude/rules/testing/react.md .claude/rules/testing/angular.md
-
-### Stap 3. Genereer CLAUDE.md
+### Stap 2. Genereer CLAUDE.md
 
 Gebruik de inhoud van `CLAUDE.md.template` (lees het eerst!) als basis. Vul de placeholders in:
 - `[Project naam]` → de gekozen projectnaam
@@ -113,7 +82,7 @@ Gebruik de inhoud van `CLAUDE.md.template` (lees het eerst!) als basis. Vul de p
 
 **Let op:** CLAUDE.md mag niet groter worden dan ~100 regels. Houd het lean.
 
-### Stap 4. Genereer ADR-001 — Stack beslissingen
+### Stap 3. Genereer ADR-001 — Stack beslissingen
 
 Maak `docs/decisions/ADR-001-stack-beslissingen.md` aan met:
 - **Status:** accepted
@@ -122,9 +91,9 @@ Maak `docs/decisions/ADR-001-stack-beslissingen.md` aan met:
 - **Beslissingen:** elke tech stack keuze met korte motivatie
 - **Consequenties:** wat volgt uit deze keuzes (positief en negatief)
 
-### Stap 5. Configureer agents met projectcontext
+### Stap 4. Configureer agents met projectcontext
 
-Elk agent bestand in `.claude/agents/` heeft een `## Projectcontext` sectie met placeholders. Vul deze in voor **alle 12 agents**:
+Elk agent bestand in `.claude/agents/` heeft een `## Projectcontext` sectie met placeholders. Vul deze in voor **alle 13 agents**:
 
 ```markdown
 ## Projectcontext
@@ -163,7 +132,7 @@ Daarnaast per agent categorie:
 - Voeg externe dependencies toe (welke services, latency targets)
 - Voeg uptime vereiste toe
 
-### Stap 6. Genereer README.md
+### Stap 5. Genereer README.md
 
 Gebruik het README template (`readme-template.md` in deze skill folder) als basis. Vul in:
 - Projectnaam en beschrijving (uit groep 1)
@@ -174,7 +143,7 @@ Gebruik het README template (`readme-template.md` in deze skill folder) als basi
 
 **De README is het eerste wat een nieuwe developer leest.** Houd het beknopt, concreet, en actionable.
 
-### Stap 7. Doc structuur aanvullen
+### Stap 6. Doc structuur aanvullen
 
 Maak directories aan die nog niet bestaan (sommige bestaan al vanuit bootstrap):
 ```bash
@@ -187,7 +156,7 @@ mkdir -p docs/architecture/api-contracts
 mkdir -p docs/audits
 ```
 
-### Stap 8. CI/CD afhandelen
+### Stap 7. CI/CD afhandelen
 
 Op basis van het antwoord op de CI/CD vraag (vraag 20):
 
@@ -196,7 +165,7 @@ Op basis van het antwoord op de CI/CD vraag (vraag 20):
 - Voeg toe aan de agent projectcontext waar relevant
 
 **Als CI/CD nog niet besloten is:**
-- Maak een chore doc aan in `docs/work/chores/` met het chore-template:
+- Maak een chore doc aan in `docs/work/chores/backlog/` met het chore-template:
   - **Titel:** CI/CD pipeline opzetten
   - **Type:** ci-cd
   - **Risico:** midden
@@ -204,23 +173,34 @@ Op basis van het antwoord op de CI/CD vraag (vraag 20):
   - **Acceptatiecriteria:** pipeline draait op elke push, tests zijn verplicht groen voor merge, deploy naar staging is geautomatiseerd
   - **Urgentie:** niet blokkerend voor development, wel nodig voor eerste deploy
 
-### Stap 9. Git herinitialiseren
+### Stap 8. Git opschonen
 
-Het project moet met een schone git history beginnen. De huidige `.git` verwijst nog naar de bootstrap repo — die moet weg.
+Het project moet met een schone history beginnen. Squash alle bootstrap commits tot één enkele startcommit:
 
-**Stap 9a — Verwijder de bootstrap git history:**
+**macOS / Linux:**
 ```bash
-rm -rf .git
-```
-
-**Stap 9b — Initialiseer een nieuw repo:**
-```bash
-git init
+git checkout --orphan clean-main
 git add -A
 git commit -m "docs: project bootstrap — [projectnaam]"
+git branch -D main
+git branch -m main
 ```
 
-**Stap 9c — Remote instellen:**
+**PowerShell (Windows):**
+```powershell
+git checkout --orphan clean-main
+git add -A
+git commit -m "docs: project bootstrap — [projectnaam]"
+git branch -D main
+git branch -m main
+```
+
+Verwijder daarna de oude remote (verwijst nog naar de bootstrap repo):
+```bash
+git remote remove origin
+```
+
+**Remote instellen:**
 Vraag de gebruiker: "Heb je al een repo aangemaakt voor dit project? Zo ja, wat is de URL?"
 
 Als de gebruiker een URL geeft:
@@ -236,14 +216,14 @@ gh repo create [projectnaam] --private --source=. --remote=origin --push
 
 **Waarschuwing:** Maak NOOIT een publiek repo aan zonder expliciete toestemming. Default is private.
 
-### Stap 10. Bevestig aan de gebruiker
+### Stap 9. Bevestig aan de gebruiker
 
 Geef een samenvatting:
 - CLAUDE.md inhoud (kort)
 - ADR-001 samenvatting
 - Welke rules actief zijn voor de gekozen stack
 - Welke agents conditioneel NIET actief zijn (bijv. frontend-developer als er geen frontend is)
-- Verwijderde bootstrap bestanden en irrelevante rules
+- Verwijderde bootstrap bestanden
 - **Volgende stap:** eerste feature definiëren met `/new-feature`
 
 ---

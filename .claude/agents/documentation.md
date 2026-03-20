@@ -85,68 +85,9 @@ Bij updates in `/docs/architecture/`:
 - Bug fixes zonder structurele impact
 - Kleine chores (formatting, dead code)
 
-#### 4. Kennissysteem bewaken
+#### 4. Kennissysteem — doorverwijzing
 
-##### CLAUDE.md check
-- Is CLAUDE.md nog clean en onder ~100 regels?
-- Bevat het alleen harde regels en pointers — geen uitgebreide uitleg?
-- Zijn alle verwijzingen in CLAUDE.md geldig (bestanden bestaan)?
-- Is er content die verplaatst moet worden naar een diepere doc?
-
-##### Verwijzingen valideren
-- Loop verwijzingen in agent definities (`.claude/agents/*.md`) na — bestaan de gerefereerde bestanden?
-- Loop verwijzingen in skills (`.claude/skills/*/SKILL.md`) na — bestaan de gerefereerde bestanden?
-- Loop verwijzingen in rules (`.claude/rules/**/*.md`) na — zijn cross-references geldig?
-- Markeer broken references als bevinding
-
-##### Lessons learned verwerken
-Na elke afgeronde taak:
-- **Lees de task doc** — zijn er beslissingen, bevindingen of patronen die breder toepasbaar zijn?
-- **Identificeer verbetervoorstellen** voor rules, skills, of agent prompts
-- **Schrijf voorstellen in het doc review rapport** — voer ze NIET zelf door. Menselijke goedkeuring is vereist voor wijzigingen aan rules, skills en agent prompts.
-
-##### Cross-task patronen herkennen
-Lees de laatste 3-5 afgeronde task docs (uit `/docs/work/*/done/`) en zoek naar:
-- **Terugkerende problemen** — dezelfde soort bug of blocker die steeds terugkomt
-- **Herhaalde beslissingen** — dezelfde architectuurkeuze die steeds opnieuw wordt gemaakt
-- **Herhaalde review bevindingen** — als meerdere taken dezelfde feedback krijgen
-- **Ontbrekende patronen** — werkwijzen die in de praktijk ontstaan maar nog niet vastgelegd zijn
-
-**Als er minder dan 3 afgeronde taken zijn:** verzamel patronen uit de huidige taak en noteer voor toekomstige review.
-
-Schrijf gevonden patronen als voorstellen in het doc review rapport.
-
-##### Verouderde docs markeren
-- Markeer verouderde docs met `> **ARCHIVED** — Dit document is verouderd sinds [datum]. Zie [alternatief].`
-- Markeer vervangen docs met `> **SUPERSEDED** — Vervangen door [nieuw document].`
-
-#### 5. Doc review rapport schrijven
-
-Schrijf een kort rapport in de task doc onder `## Doc review`:
-
-```markdown
-## Doc review
-
-### CLAUDE.md
-- Status: OK / TE GROOT / BROKEN REFS
-- [bevindingen indien van toepassing]
-
-### Verwijzingen
-- Gecontroleerd: [aantal] bestanden
-- Broken: [lijst of "geen"]
-
-### Lessons learned
-- [wat gevonden is en waar]
-
-### Voorgestelde wijzigingen (vereist menselijke goedkeuring)
-- [ ] [rules/skills/agent wijziging voorstel + motivatie]
-
-### Cross-task patronen
-- [terugkerende patronen over meerdere taken, of "geen gevonden" / "te weinig afgeronde taken"]
-
-### Verouderde docs
-- [gemarkeerd of "geen gevonden"]
-```
+Kennissysteem-checks (CLAUDE.md, verwijzingen, lessons learned, cross-task patronen, verouderde docs) worden uitgevoerd door de doc-reviewer agent in Stap 7. De documentation agent doet deze checks niet.
 
 ## Harde regels
 

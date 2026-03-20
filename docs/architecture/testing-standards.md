@@ -71,7 +71,7 @@ Regressietests op wat geraakt wordt. Geen nieuwe tests verplicht.
 
 ### Wanneer GEEN TDD
 
-- Frontend componenten — bouw eerst, test daarna op gedrag
+- **Frontend componenten** — bouw eerst, test daarna op gedrag. Component tests worden in Stap 5 geschreven (NA implementatie), niet in Stap 3. Dit is een bewuste uitzondering: React Testing Library en vergelijkbare tools testen gedrag van bestaande componenten. Rode tests in Stap 3 zijn alleen voor backend/service lagen.
 - Infrastructuur code — database configuratie, migraties, DI setup
 - Exploratory code — gedrag nog niet helder voor implementatie begint
 - Simpele CRUD zonder business logica

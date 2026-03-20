@@ -90,8 +90,8 @@ Git-capture handelt af: WIP commit, checkout main, doc schrijven, branch aanmake
 
 ### 6. Bevestig aan de gebruiker
 - Toon de feature titel en branch naam
-- Meld dat het in backlog staat
-- Verwijs naar `/start-work` of `/feature-planner` om het op te pakken
+- Toon het worktree-pad: `../[repo-naam]--[branch-met-streepjes]`
+- Meld: "De feature staat in backlog. Om eraan te werken: open een sessie in de worktree en voer `/start-work [taaknaam]` uit."
 
 ---
 

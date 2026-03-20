@@ -9,8 +9,8 @@ Dit document beschrijft het verplichte werkproces voor elke feature, bug en chor
 - **Niets wordt gebouwd zonder plan** — elke taak start met een doc in backlog
 - **API Design-First** — interfaces worden vastgelegd voor implementatie begint, zodat parallel werken mogelijk is
 - **Alles wordt gereviewd** — geen finding wordt stilzwijgend genegeerd
-- **Agent-consensus** — review agents lossen conflicten onderling op. Alleen bij onoplosbaar conflict escaleert naar de mens
-- **Bewust accepteren of fixen** — elke bevinding (ook INFO en LOW) wordt gefixed of expliciet geaccepteerd met motivatie in de doc
+- **Architect als arbiter** — de architect weegt review bevindingen, fixt via developer agents, en escaleert naar de gebruiker wat niet opgelost kan worden (max 4 iteraties)
+- **CRITICAL/HIGH blokkeren** — moeten gefixed of door de gebruiker geaccepteerd worden. WARN/INFO/LOW worden automatisch geaccepteerd en bij de PR gereviewd
 
 ---
 
@@ -110,8 +110,9 @@ Deze scenarios worden toegevoegd aan de task doc onder `## Test scenarios`.
 
 De test automation agent:
 - Bouwt tests op basis van de scenarios uit Stap 2
-- Unit tests, integratietests, acceptatietests
-- Zorgt voor coverage op alle acceptatiecriteria
+- **Alleen backend/service tests** — unit tests, integratietests, acceptatietests
+- **Frontend component tests worden NIET in Stap 3 geschreven** — die komen NA implementatie in Stap 5 (zie `docs/architecture/testing-standards.md`)
+- Zorgt voor coverage op alle backend acceptatiecriteria
 - Schrijft ook negatieve tests — foute input, timeouts, unavailable dependencies
 - Tests moeten compileren/parsen maar **FALEN** — er is nog geen implementatie
 - Rode tests zijn het bewijs dat de tests iets nuttigs testen
@@ -158,7 +159,8 @@ Zonder API contract: backend eerst, frontend daarna.
 *Wie: test automation agent*
 *Mode: `default` — uitvoeren mag*
 
-- Draait de volledige test suite
+- Draait de volledige test suite (backend tests uit Stap 3)
+- **Schrijft frontend component tests** — NA implementatie, op basis van het gedrag van de gebouwde componenten
 - Rapporteert: welke tests groen, welke rood
 - Bij rode tests: rapporteert aan developer agent voor fix → terug naar Stap 4
 - Bij groene tests: refactor indien nodig — code opschonen terwijl tests groen blijven
@@ -206,25 +208,25 @@ De review agents draaien parallel en voegen bevindingen toe aan de task doc onde
 ```
 CRITICAL  — moet gefixed, blokkeert merge
 HIGH      — moet gefixed, blokkeert merge
-WARN      — moet gefixed of bewust geaccepteerd met motivatie
-INFO      — moet gefixed of bewust geaccepteerd met motivatie
-LOW       — moet gefixed of bewust geaccepteerd met motivatie
+WARN      — automatisch geaccepteerd als `ACCEPTED — review bij PR`, blokkeert niet
+INFO      — automatisch geaccepteerd als `ACCEPTED — review bij PR`, blokkeert niet
+LOW       — automatisch geaccepteerd als `ACCEPTED — review bij PR`, blokkeert niet
 ```
 
 **Niets wordt stilzwijgend genegeerd.** Elke bevinding krijgt één van twee uitkomsten:
 - `FIXED` — aanpassing gemaakt, verwijs naar commit
 - `ACCEPTED` — bewust geaccepteerd, motivatie verplicht
 
-#### Stap 7.1 — Consensus bij conflicten
-Als review agents tegenstrijdige bevindingen hebben:
+#### Stap 7.1 — Architect weegt bevindingen
+Na alle reviews beoordeelt de **architect agent** de CRITICAL/HIGH bevindingen:
 
-1. Agents starten een groepsdiscussie in de task doc onder `## Review discussie`
-2. Elke agent legt zijn standpunt uit met technische motivatie
-3. Agents proberen consensus te bereiken
-4. Bij consensus: gezamenlijke aanbeveling in doc, door naar Stap 7.2
-5. Bij onoplosbaar conflict na discussie: **escaleert naar de mens**
+1. Architect leest alle `## Review bevindingen` en weegt ze tegen het oorspronkelijke plan
+2. Architect fixt wat mogelijk is (via developer agents) en accepteert wat logisch is
+3. Reviewers draaien opnieuw op de gewijzigde code
+4. **Max 4 iteraties.** Na 4 iteraties met nog steeds open CRITICAL/HIGH: escaleer naar de gebruiker
+5. De architect mag bevindingen **accepteren of escaleren naar de gebruiker**, maar niet **afwijzen** — alleen de gebruiker kan een CRITICAL/HIGH finding afwijzen
 
-De mens leest de discussie, beslist, noteert beslissing in de doc.
+WARN/INFO/LOW worden automatisch gemarkeerd als `ACCEPTED — review bij PR` en blokkeren niet.
 
 #### Stap 7.2 — Impact assessment na review
 Na alle bevindingen bepaalt de architect agent:

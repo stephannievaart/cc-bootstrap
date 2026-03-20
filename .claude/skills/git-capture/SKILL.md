@@ -15,7 +15,7 @@ Deze skill wordt aangeroepen door de drie capture skills (new-feature, capture-b
 ## Input van de capture skill
 
 De capture skill levert:
-- **doc_path** — volledig pad waar de doc moet komen (bijv. `docs/work/features/product-card.md`)
+- **doc_path** — volledig pad waar de doc moet komen (bijv. `docs/work/features/backlog/product-card.md`)
 - **doc_content** — de volledige inhoud van de gegenereerde doc
 - **branch_name** — de branchnaam (bijv. `feature/product-card`)
 

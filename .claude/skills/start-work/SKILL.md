@@ -50,12 +50,23 @@ grep -rl "status: in-progress" docs/work/
 **P1 bugs:** Geen speciale uitzondering meer. P1 bugs volgen dezelfde branch-based scoping regels. De gebruiker opent een nieuwe sessie of worktree om een P1 parallel op te pakken.
 
 ### 3. Wijzig status naar in-progress
-Wijzig de YAML frontmatter status (het `status:` veld tussen de `---` markers bovenaan het bestand), niet de bold-regel in de body:
+Wijzig de YAML frontmatter in de task doc van `status: backlog` naar `status: in-progress`.
+
+**Let op:** wijzig het `status:` veld tussen de `---` markers bovenaan het bestand, niet de bold-regel in de body.
+
+**macOS / Linux:**
 ```bash
-sed -i '' 's/^status: backlog/status: in-progress/' [doc_path]
+sed -i '' 's/^status: backlog/status: in-progress/' docs/work/[type]/backlog/[task-doc].md
+git add docs/work/[type]/backlog/[task-doc].md
+git commit -m "docs: start werk aan [taaknaam]"
 ```
 
-Commit: `docs: start werk aan [taaknaam]`
+**PowerShell (Windows):**
+```powershell
+(Get-Content docs/work/[type]/backlog/[task-doc].md) -replace '^status: backlog', 'status: in-progress' | Set-Content docs/work/[type]/backlog/[task-doc].md
+git add docs/work/[type]/backlog/[task-doc].md
+git commit -m "docs: start werk aan [taaknaam]"
+```
 
 ### 4. Check branch uit (worktree enforcement)
 - Lees de branch naam uit de task doc (zoek naar `Branch:`)
@@ -119,21 +130,24 @@ Als een agent-aanroep geen bruikbare output oplevert (lege response, foutmelding
 ### Stap 3 — Tests bouwen — rode tests (normal mode)
 - Roep de **test-automation agent** aan (default mode)
 - Bouwt rode tests op basis van scenarios uit Stap 2
+- **Alleen backend/service tests** — frontend component tests worden NA implementatie geschreven in Stap 5 (zie `docs/architecture/testing-standards.md`)
 - Tests moeten FALEN — er is nog geen implementatie
 - Dit is de TDD "red" fase: tests bewijzen dat ze iets nuttigs testen
 
 ### Stap 4 — Implementatie (normal mode)
-- Roep de relevante **developer agents** aan:
-  - Backend werk → backend-developer agent
-  - Frontend werk → frontend-developer agent
-  - UI werk → ui-designer agent
+- Lees `### Benodigde agents` uit de `## Aanpak` sectie in de task doc (geschreven door architect in Stap 1)
+- Roep alleen de aangevinkte developer agents aan:
+  - `[x] backend-developer` → backend-developer agent
+  - `[x] frontend-developer` → frontend-developer agent
+  - `[x] ui-designer` → ui-designer agent
+- Als de architect geen `### Benodigde agents` heeft ingevuld: bepaal zelf op basis van de geraakte lagen in `## Aanpak`
 - Developer agents laden automatisch de feature-builder skill (scope bewaking) en git-workflow skill (commit conventies)
 - Doel: alle rode tests uit Stap 3 groen maken
 - Parallel indien API contract beschikbaar uit Stap 1b
 
 ### Stap 5 — Tests draaien + refactor (normal mode)
 - Draai de volledige test suite
-- **Bij rode tests:** terug naar Stap 4 — developer agents fixen
+- **Bij rode tests:** schrijf de falende test-output (testnaam, foutmelding, verwacht vs. actueel) in de task doc onder `## Test resultaten`. Roep daarna de developer agent(s) opnieuw aan — zij lezen de test-output uit de doc om gericht te fixen.
 - **Na 3 iteraties nog steeds rood:** stop. Meld aan de gebruiker: "De tests blijven rood na 3 iteraties. Beoordeel handmatig of de aanpak herzien moet worden, of accepteer de rode tests bewust voor de PR." Ga niet verder terug naar Stap 4 — wacht op gebruikersinput.
 - **Bij groen:** refactor indien nodig, dan door naar Stap 6
 
@@ -152,8 +166,9 @@ Als een agent-aanroep geen bruikbare output oplevert (lege response, foutmelding
   - Security reviewer (altijd)
   - **Doc-reviewer als laatste** — controleert ook het werk van de documentation agent uit Stap 6
 - Bevindingen in task doc onder `## Review bevindingen`
-- Bij CRITICAL/HIGH: terug naar Stap 4 (of Stap 1b als API geraakt)
-- Bij alleen WARN/INFO/LOW: bespreek met gebruiker → fixen of accepteren
+- Bij CRITICAL/HIGH: de **architect agent** weegt de bevindingen, fixt wat kan, en accepteert wat logisch is. Reviewers draaien opnieuw op de gewijzigde code. **Max 4 iteraties.** Na 4 iteraties met nog steeds open CRITICAL/HIGH: escaleer naar de gebruiker.
+- De architect mag bevindingen **accepteren of escaleren**, maar niet **afwijzen**. Alleen de gebruiker kan een CRITICAL/HIGH finding afwijzen.
+- Bij alleen WARN/INFO/LOW: markeer automatisch als `ACCEPTED — review bij PR` en ga door naar Stap 8. De gebruiker reviewt deze bij de PR.
 
 ### Stap 8 — PR creation + task doc finalisatie (normal mode)
 Dit wordt door start-work zelf georkestreerd (geen aparte agent):
@@ -163,11 +178,11 @@ Dit wordt door start-work zelf georkestreerd (geen aparte agent):
    - Als secties ontbreken of leeg zijn: **meld dit aan gebruiker** — vul ze niet zelf in
 2. **Task doc status wijzigen** — wijzig frontmatter `status: in-progress` naar `status: done` en commit op de feature branch:
    ```bash
-   git add docs/work/[type]/[task-doc].md
+   git add docs/work/[type]/backlog/[task-doc].md
    git commit -m "docs: markeer [taaknaam] als done"
    ```
    De statuswijziging zit bewust in de PR commit — zo is done alleen effectief op main na een echte merge. Als de PR geweigerd wordt, blijft main ongewijzigd.
-3. **PR aanmaken** — `gh pr create --title "[type]: [beschrijving]" --body "$(cat docs/work/[type]/[task-doc].md)"`
+3. **PR aanmaken** — `gh pr create --title "[type]: [beschrijving]" --body "$(cat docs/work/[type]/backlog/[task-doc].md)"`
    - Controleer eerst of er nog open CRITICAL of HIGH bevindingen zijn — zo ja: **maak GEEN PR**
 4. Meld aan de gebruiker: "Na merge, voer `/post-merge` uit om branch, worktree, en task doc op te ruimen."
 
