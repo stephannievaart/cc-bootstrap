@@ -1,3 +1,7 @@
+---
+status: backlog
+---
+
 # F-[nummer] — [Feature titel]
 
 **Status:** backlog

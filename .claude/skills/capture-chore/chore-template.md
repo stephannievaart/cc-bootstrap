@@ -1,3 +1,7 @@
+---
+status: backlog
+---
+
 # C-[nummer] — [Chore titel]
 
 **Status:** backlog

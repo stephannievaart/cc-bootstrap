@@ -50,9 +50,9 @@ grep -rl "status: in-progress" docs/work/
 **P1 bugs:** Geen speciale uitzondering meer. P1 bugs volgen dezelfde branch-based scoping regels. De gebruiker opent een nieuwe sessie of worktree om een P1 parallel op te pakken.
 
 ### 3. Wijzig status naar in-progress
-Open de task doc en wijzig de frontmatter status:
-```yaml
-status: in-progress
+Wijzig de YAML frontmatter status (het `status:` veld tussen de `---` markers bovenaan het bestand), niet de bold-regel in de body:
+```bash
+sed -i '' 's/^status: backlog/status: in-progress/' [doc_path]
 ```
 
 Commit: `docs: start werk aan [taaknaam]`

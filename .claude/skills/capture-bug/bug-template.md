@@ -1,3 +1,7 @@
+---
+status: backlog
+---
+
 # B-[nummer] — [Bug titel]
 
 **Status:** backlog
