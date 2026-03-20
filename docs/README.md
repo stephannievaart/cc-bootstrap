@@ -43,4 +43,4 @@ Elke significante technische beslissing wordt vastgelegd als ADR. Zie de map voo
 
 | Document | Beschrijving |
 |----------|-------------|
-| [database/migration-standards.md](database/migration-standards.md) | Migratie conventies en veiligheidsregels |
+| [architecture/database-standards.md](architecture/database-standards.md) | Database standaarden en migratie conventies |

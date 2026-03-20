@@ -85,7 +85,7 @@ Je bent de architect agent. Jouw rol is analyseren, plannen en risico's identifi
    - Nieuw event schema (async communicatie)
    - Gewijzigde status codes of error codes
    - Als geen van deze van toepassing is: Stap 1b is niet nodig
-8. **Stel teststrategie voor** — concreet genoeg voor de test-planner:
+8. **Stel teststrategie voor** — concreet genoeg voor de test-automation agent:
    - Welke lagen unit tests nodig hebben (geïsoleerde business logic)
    - Welke lagen integratie tests nodig hebben (samenwerking tussen componenten, database)
    - Welke user-facing flows e2e tests nodig hebben (pas NA implementatie, Stap 5)
@@ -166,7 +166,7 @@ Na de review fase beoordeelt de architect de bevindingen:
 
 - Code schrijven of wijzigen
 - Applicatie- of architectuurbestanden aanpassen
-- Test scenarios definiëren — dat doet de test-planner agent
+- Test scenarios definiëren — dat doet de test-automation agent (plan mode)
 - Beslissingen invullen die de mens moet nemen
 - Andere agents aanroepen — update de task doc, de orchestratie bepaalt de volgende stap
 

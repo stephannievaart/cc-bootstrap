@@ -47,7 +47,7 @@ Bevindingen worden gerapporteerd. De developer agent fixt in een nieuwe iteratie
 *Wie: capture skill + git-capture skill*
 
 - Feature, bug of chore wordt gecaptured via de juiste capture skill
-- Doc aangemaakt in `/docs/[type]/backlog/`
+- Doc aangemaakt in `docs/work/[type]/backlog/`
 - Branch aangemaakt lokaal + remote
 - Branchnaam in doc geschreven
 - Terug naar vorige branch
@@ -87,10 +87,10 @@ Dit is het moment waarop parallel werken mogelijk wordt — backend en frontend 
 ---
 
 ### Stap 2 — Test scenarios definiëren
-*Wie: test-planner agent*
+*Wie: test-automation agent (plan mode)*
 *Mode: `plan` — scenarios worden in de task doc geschreven, nog geen testcode*
 
-**Voor implementatie begint** definieert de test-planner agent:
+**Voor implementatie begint** definieert de test-automation agent (plan mode):
 - Acceptatiecriteria vertaald naar concrete test scenarios
 - Happy path scenarios
 - Unhappy path scenarios — wat gebeurt er als het fout gaat
@@ -264,7 +264,7 @@ Elke afgeronde taak verbetert het kennissysteem voor de volgende.
 1. **Task doc volledigheid controleren** — check dat alle verplichte secties ingevuld zijn:
    - `## Beschrijving`, `## Acceptatiecriteria`, `## Aanpak`, `## Test scenarios`, `## Implementatie notities`, `## Review bevindingen`
    - Als secties ontbreken of leeg zijn: meld aan gebruiker — vul niet zelf in
-2. **Task doc verplaatsen** naar `/docs/[type]/done/`
+2. **Task doc verplaatsen** naar `docs/work/[type]/done/`
 3. **PR aanmaken** met `gh pr create` — task doc als beschrijving
    - Controleer eerst of er nog open CRITICAL of HIGH bevindingen zijn — zo ja: **maak GEEN PR**
 
@@ -282,7 +282,7 @@ Stap 1   Architect plant — plan mode
     ↓
 Stap 1b  API design indien interface geraakt — plan mode
     ↓
-Stap 2   Test-planner definieert scenarios — plan mode
+Stap 2   Test-automation definieert scenarios — plan mode
     ↓
 Stap 3   Test agent bouwt rode tests — normal mode (TDD Red)
     ↓

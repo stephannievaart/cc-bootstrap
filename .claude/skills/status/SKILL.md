@@ -15,9 +15,9 @@ Je geeft een compleet, overzichtelijk statusrapport van het project. Geen analys
 - **Branch:** !`git branch --show-current`
 - **Worktrees:** !`git worktree list`
 - **In-progress:** !`grep -rl "status: in-progress" docs/work/ 2>/dev/null || echo "geen"`
-- **Backlog features:** !`grep -rl "status: backlog" docs/work/features/ 2>/dev/null | wc -l | tr -d ' '`
-- **Backlog bugs:** !`grep -rl "status: backlog" docs/work/bugs/ 2>/dev/null | wc -l | tr -d ' '`
-- **Backlog chores:** !`grep -rl "status: backlog" docs/work/chores/ 2>/dev/null | wc -l | tr -d ' '`
+- **Backlog features:** !`find docs/work/features/backlog/ -name "*.md" -not -name ".gitkeep" 2>/dev/null | wc -l | tr -d ' '`
+- **Backlog bugs:** !`find docs/work/bugs/backlog/ -name "*.md" -not -name ".gitkeep" 2>/dev/null | wc -l | tr -d ' '`
+- **Backlog chores:** !`find docs/work/chores/backlog/ -name "*.md" -not -name ".gitkeep" 2>/dev/null | wc -l | tr -d ' '`
 
 ---
 
@@ -36,12 +36,12 @@ Per in-progress item toon:
 Meerdere taken tegelijk in-progress is normaal bij worktree-gebaseerd werken — geen waarschuwing nodig.
 
 ### 2. Backlog
-Zoek docs met `status: backlog` per type:
-- `docs/work/features/` — features in backlog (aantal + lijst met titels)
-- `docs/work/chores/` — chores in backlog (aantal + lijst met titels)
+Zoek docs in de backlog/ subdirectories per type:
+- `docs/work/features/backlog/` — features in backlog (aantal + lijst met titels)
+- `docs/work/chores/backlog/` — chores in backlog (aantal + lijst met titels)
 
 ### 3. Open bugs per severity
-Zoek bugs met `status: backlog` in `docs/work/bugs/` en classificeer op severity:
+Zoek bugs in `docs/work/bugs/backlog/` en classificeer op severity:
 - **P1** — critical, mogelijke werkonderbreking
 - **P2** — high
 - **P3** — medium

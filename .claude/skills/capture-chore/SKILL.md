@@ -105,7 +105,7 @@ Gebruik het chore template (`chore-template.md` in deze skill folder) en vul in:
 - Acceptatiecriteria (focus op: wat mag niet kapot gaan)
 
 ### 2. Bepaal volgnummer
-Tel alle bestaande `.md` bestanden in `docs/work/chores/` (exclusief `.gitkeep`).
+Tel alle bestaande `.md` bestanden in `docs/work/chores/backlog/` en `docs/work/chores/done/` (exclusief `.gitkeep`).
 
 Volgnummer = totaal aantal + 1, geformateerd als `C-XXX` (bijv. `C-001`, `C-002`).
 
@@ -121,7 +121,7 @@ Voorbeeld: `chore/spring-boot-3-upgrade`
 
 ### 5. Roep git-capture aan
 Geef door aan de git-capture skill:
-- **doc_path:** `docs/work/chores/[bestandsnaam]`
+- **doc_path:** `docs/work/chores/backlog/[bestandsnaam]`
 - **doc_content:** de gegenereerde chore doc
 - **branch_name:** `chore/[naam]`
 

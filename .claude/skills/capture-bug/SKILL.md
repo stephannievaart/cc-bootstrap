@@ -71,7 +71,7 @@ Gebruik het bug template (`bug-template.md` in deze skill folder) en vul in:
 - Eventuele error messages
 
 ### 2. Bepaal volgnummer
-Tel alle bestaande `.md` bestanden in `docs/work/bugs/` (exclusief `.gitkeep`).
+Tel alle bestaande `.md` bestanden in `docs/work/bugs/backlog/` en `docs/work/bugs/done/` (exclusief `.gitkeep`).
 
 Volgnummer = totaal aantal + 1, geformateerd als `B-XXX` (bijv. `B-001`, `B-003`).
 
@@ -87,7 +87,7 @@ Voorbeeld: `bug/P2-checkout-total-wrong`
 
 ### 5. Roep git-capture aan
 Geef door aan de git-capture skill:
-- **doc_path:** `docs/work/bugs/[bestandsnaam]`
+- **doc_path:** `docs/work/bugs/backlog/[bestandsnaam]`
 - **doc_content:** de gegenereerde bug doc
 - **branch_name:** `bug/[P-level]-[naam]`
 

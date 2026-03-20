@@ -178,9 +178,9 @@ Gebruik het README template (`readme-template.md` in deze skill folder) als basi
 
 Maak directories aan die nog niet bestaan (sommige bestaan al vanuit bootstrap):
 ```bash
-mkdir -p docs/work/features
-mkdir -p docs/work/bugs
-mkdir -p docs/work/chores
+mkdir -p docs/work/features/backlog docs/work/features/done
+mkdir -p docs/work/bugs/backlog docs/work/bugs/done
+mkdir -p docs/work/chores/backlog docs/work/chores/done
 mkdir -p docs/decisions
 mkdir -p docs/workflow
 mkdir -p docs/architecture/api-contracts

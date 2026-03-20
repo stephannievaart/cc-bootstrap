@@ -73,7 +73,7 @@ Kort:
 
 ## Pointers — lees deze voor je begint
 
-- Database wijzigingen → lees `/docs/architecture/migration-standards.md`
+- Database wijzigingen → lees `/docs/architecture/database-standards.md`
 - API wijzigingen → lees `/docs/architecture/api-conventions.md`
 - Resilience patterns → lees `/docs/architecture/resilience-patterns.md`
 - Architectuur beslissingen → lees `/docs/decisions/` (alle ADRs)

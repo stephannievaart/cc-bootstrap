@@ -14,9 +14,9 @@ Je helpt de gebruiker bij het kiezen en prioriteren van de volgende taak. Je too
 
 - **Branch:** !`git branch --show-current`
 - **In-progress:** !`grep -rl "status: in-progress" docs/work/ 2>/dev/null || echo "geen"`
-- **Backlog features:** !`grep -rl "status: backlog" docs/work/features/ 2>/dev/null | wc -l | tr -d ' '`
-- **Backlog bugs:** !`grep -rl "status: backlog" docs/work/bugs/ 2>/dev/null | wc -l | tr -d ' '`
-- **Backlog chores:** !`grep -rl "status: backlog" docs/work/chores/ 2>/dev/null | wc -l | tr -d ' '`
+- **Backlog features:** !`find docs/work/features/backlog/ -name "*.md" -not -name ".gitkeep" 2>/dev/null | wc -l | tr -d ' '`
+- **Backlog bugs:** !`find docs/work/bugs/backlog/ -name "*.md" -not -name ".gitkeep" 2>/dev/null | wc -l | tr -d ' '`
+- **Backlog chores:** !`find docs/work/chores/backlog/ -name "*.md" -not -name ".gitkeep" 2>/dev/null | wc -l | tr -d ' '`
 - **Worktrees:** !`git worktree list`
 
 ---
@@ -44,19 +44,19 @@ Ga door naar Stap 2.
 ## Stap 2 — Overzicht tonen
 
 ### Open bugs (gesorteerd op severity)
-Zoek bugs met `status: backlog` in `docs/work/bugs/` en toon gesorteerd op severity:
+Zoek bugs in `docs/work/bugs/backlog/` en toon gesorteerd op severity:
 - **P1 bugs** — bovenaan, met waarschuwing
 - **P2 bugs** — prominent
 - **P3/P4 bugs** — als lijst
 
 ### Feature backlog
-Zoek features met `status: backlog` in `docs/work/features/` en toon per item:
+Zoek features in `docs/work/features/backlog/` en toon per item:
 - Titel
 - Korte beschrijving (eerste regel na `## Beschrijving`)
 - Afhankelijkheden (als die er zijn)
 
 ### Chore backlog
-Zoek chores met `status: backlog` in `docs/work/chores/` en toon per item:
+Zoek chores in `docs/work/chores/backlog/` en toon per item:
 - Titel
 - Type en risico level
 - Urgentie

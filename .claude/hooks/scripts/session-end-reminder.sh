@@ -1,7 +1,10 @@
 #!/bin/bash
+# USAGE: Draai handmatig aan het einde van een sessie:
+#   bash .claude/hooks/scripts/session-end-reminder.sh
+# Claude Code ondersteunt (nog) geen automatische Stop hooks.
+#
 # session-end-reminder.sh
 # Herinnert aan WIP commit en signaleert verouderde worktrees.
-# Wordt aangeroepen als Stop hook bij het einde van een sessie.
 
 set -euo pipefail
 

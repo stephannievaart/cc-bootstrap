@@ -102,7 +102,7 @@ start-work skill
 
 Stap 1   architect (plan mode)
 Stap 1b  api-design (plan mode) — conditioneel
-Stap 2   test-planner: scenarios (plan mode)
+Stap 2   test-automation (plan mode): scenarios
 Stap 3   test-automation: rode tests bouwen (TDD Red)
 Stap 4   developer agents: implementatie (TDD Green) — parallel via worktrees
 Stap 5   tests draaien + refactor → rood: terug naar Stap 4

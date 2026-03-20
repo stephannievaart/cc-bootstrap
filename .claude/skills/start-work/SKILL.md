@@ -22,7 +22,7 @@ Je start het volledige werkproces voor een taak. Dit is het centrale punt dat al
 ## Stap 0 — Voorbereiding
 
 ### 1. Identificeer de taak
-- Als de gebruiker een taaknaam noemt: zoek het document in `docs/work/features/`, `docs/work/bugs/`, of `docs/work/chores/` (filter op `status: backlog` in frontmatter)
+- Als de gebruiker een taaknaam noemt: zoek het document in `docs/work/features/backlog/`, `docs/work/bugs/backlog/`, of `docs/work/chores/backlog/` (filter op `status: backlog` in frontmatter)
 - Als de gebruiker geen naam noemt: toon de opties via feature-planner logica en laat kiezen. Als er geen gebruiker beschikbaar is (agent-context): stop met fout "Geen taaknaam meegegeven."
 - Als het document niet gevonden wordt: meld dit en stop
 

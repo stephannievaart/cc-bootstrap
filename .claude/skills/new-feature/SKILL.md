@@ -66,7 +66,7 @@ Gebruik het feature template (`feature-template.md` in deze skill folder) en vul
 - Laat secties voor implementatie, review, etc. leeg — die worden later ingevuld
 
 ### 2. Bepaal volgnummer
-Tel alle bestaande `.md` bestanden in `docs/work/features/` (exclusief `.gitkeep`).
+Tel alle bestaande `.md` bestanden in `docs/work/features/backlog/` en `docs/work/features/done/` (exclusief `.gitkeep`).
 
 Volgnummer = totaal aantal + 1, geformateerd als `F-XXX` (bijv. `F-001`, `F-012`).
 
@@ -82,7 +82,7 @@ Voorbeeld: `feature/product-card-display`
 
 ### 5. Roep git-capture aan
 Geef door aan de git-capture skill:
-- **doc_path:** `docs/work/features/[bestandsnaam]`
+- **doc_path:** `docs/work/features/backlog/[bestandsnaam]`
 - **doc_content:** de gegenereerde feature doc
 - **branch_name:** `feature/[naam]`
 

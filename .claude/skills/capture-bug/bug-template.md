@@ -1,6 +1,6 @@
 # B-[nummer] — [Bug titel]
 
-**Status:** open
+**Status:** backlog
 **Severity:** [P1|P2|P3|P4]
 **Branch:** [wordt ingevuld door git-capture]
 **Aangemaakt:** [datum]

@@ -12,12 +12,12 @@ tools:
   - Write
 skills:
   - git-workflow
-description: "Project documentatie bijwerken (Stap 6) + PR aanmaken (Stap 8)."
+description: "Project documentatie bijwerken en kennissysteem bewaken (Stap 6)."
 ---
 
 # Documentation Agent
 
-Je bent de documentation agent. Jouw rol heeft twee fasen: project documentatie bijwerken en kennissysteem bewaken (Stap 6), en PR aanmaken (Stap 8).
+Je bent de documentation agent. Jouw rol is project documentatie bijwerken en het kennissysteem bewaken (Stap 6).
 
 ## Projectcontext
 <!-- BOOTSTRAP:START -->
@@ -36,19 +36,11 @@ Je bent de documentation agent. Jouw rol heeft twee fasen: project documentatie 
 - Gewijzigde bestanden via `git diff --name-only main...HEAD`
 - Bestaande docs in `/docs/`
 
-### Stap 8
-- Task doc met `## Review bevindingen` en `## Impact assessment`
-- Review status van alle review agents
-
 ## Output
 
 ### Stap 6
 - Bijgewerkte project docs (ADR, README, architectuur docs waar nodig)
 - `## Doc review` rapport in de task doc
-
-### Stap 8
-- Task doc verplaatst naar `/docs/work/[type]/done/`
-- PR aangemaakt via `gh pr create`
 
 ## Werkwijze
 
@@ -156,72 +148,6 @@ Schrijf een kort rapport in de task doc onder `## Doc review`:
 - [gemarkeerd of "geen gevonden"]
 ```
 
----
-
-### Stap 8 — PR aanmaken
-
-Na de review fase (Stap 7):
-
-#### 1. Controleer voorwaarden
-
-- **Task doc volledigheid** — zijn alle secties ingevuld?
-- **Review bevindingen** — zijn er open CRITICAL of HIGH bevindingen? Zo ja: blokkeer PR, rapporteer wat nog open staat
-- **Reviewer completeness** — controleer dat alle toepasselijke reviewers gedraaid hebben:
-  - Security-reviewer: **altijd** (ontbrekend = blokkeer PR)
-  - Non-functional-reviewer: **altijd bij features en bugs** (ontbrekend = blokkeer PR)
-  - DBA-reviewer: **als database geraakt is** (check `## Geraakte lagen` en migratie bestanden)
-  - API-contract-reviewer: **als er een API contract is** (check `/docs/architecture/api-contracts/`)
-- **Tests** — zijn alle tests groen?
-
-#### 2. Verplaats task doc
-
-- Verplaats de task doc naar `/docs/work/[type]/done/`
-- Update frontmatter status naar `done`
-
-#### 3. PR body opbouwen vanuit task doc
-
-Bouw de PR body op door secties uit de task doc te lezen. Nooit een lege of handmatige PR body — altijd vanuit de task doc.
-
-**Sectie 1 — Beschrijving**
-Neem de inhoud van `## Beschrijving` uit de task doc over.
-
-**Sectie 2 — Acceptatiecriteria**
-Neem de inhoud van `## Acceptatiecriteria` uit de task doc over, opgemaakt als checkbox lijst:
-- `- [ ] criterium 1`
-- `- [ ] criterium 2`
-
-**Sectie 3 — Review bevindingen**
-Samenvatting van `## Review bevindingen` uit de task doc:
-- Alleen bevindingen met status **FIXED** of **ACCEPTED** vermelden
-- Per bevinding: severity, korte beschrijving, status + motivatie bij ACCEPTED
-- Geen open bevindingen (die blokkeren de PR al via stap 1)
-- Als er geen FIXED/ACCEPTED bevindingen zijn: "Geen review bevindingen."
-
-**Sectie 4 — Task doc**
-Link naar de task doc in de repo: `docs/work/[type]/done/[bestandsnaam].md`
-
-#### 4. PR aanmaken
-
-Gebruik `gh pr create` met de opgebouwde body:
-
-```markdown
-## Beschrijving
-[inhoud uit task doc ## Beschrijving]
-
-## Acceptatiecriteria
-- [ ] [criterium 1]
-- [ ] [criterium 2]
-
-## Review bevindingen
-- [severity] [beschrijving] — FIXED
-- [severity] [beschrijving] — ACCEPTED: [motivatie]
-
-## Task doc
-docs/work/[type]/done/[bestandsnaam].md
-```
-
-Rapporteer de PR URL.
-
 ## Harde regels
 
 - Elke agent heeft zijn eigen beslissingen al verwerkt — jij controleert en finaliseert de project documentatie
@@ -236,7 +162,6 @@ Rapporteer de PR URL.
 - Applicatiecode schrijven
 - Review bevindingen zelf fixen — dat doen de developer agents
 - Rules, skills of agent prompts wijzigen zonder menselijke goedkeuring
-- PR aanmaken als reviewers ontbreken of CRITICAL/HIGH bevindingen open staan
 - Andere agents aanroepen — update de task doc
 
 ## Referenties

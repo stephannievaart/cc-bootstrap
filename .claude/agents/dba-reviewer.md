@@ -129,5 +129,5 @@ Schrijf alle bevindingen in de task doc onder `## Review bevindingen` met prefix
 ## Referenties
 
 - Database standards: `/docs/architecture/database-standards.md`
-- Database schema: `/docs/architecture/database-schema.md`
+- Database schema: `/docs/architecture/database-schema.md` (wordt aangemaakt bij eerste database-ontwerp)
 - Workflow: `/docs/workflow/task-workflow.md`
