@@ -108,9 +108,22 @@ Als de worktree niet bestaat: sla over — mogelijk al handmatig opgeruimd.
 
 ## Stap 7 — Pull main
 
+Controleer eerst of je op main zit:
+```bash
+git branch --show-current
+```
+
+Als je niet op main zit:
+```bash
+git checkout main
+```
+
+Pas dan:
 ```bash
 git pull origin main
 ```
+
+Als git checkout main faalt: meld dit aan de gebruiker en stop. Verdere stappen vereisen main.
 
 ---
 

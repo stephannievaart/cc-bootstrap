@@ -45,6 +45,10 @@ Als er geen wijzigingen zijn: sla deze stap over.
 
 **Geen confirmatie vragen — dit is automatisch.**
 
+Als de WIP commit faalt (bijv. geen git user.name of user.email geconfigureerd):
+- Meld aan de gebruiker: "WIP commit mislukt. Controleer of git user.name en user.email geconfigureerd zijn: git config user.name '[naam]' && git config user.email '[email]'"
+- Stop hier — ga niet door met Stap 3 totdat de commit gelukt is.
+
 ### Stap 3 — Checkout main en pull
 ```bash
 git checkout main
@@ -61,6 +65,10 @@ Schrijf de doc content naar het bestand:
 ```bash
 # Schrijf doc_content naar doc_path
 ```
+
+Als het schrijven van de doc mislukt (directory aanmaken of bestand schrijven faalt):
+- Meld aan de gebruiker welk pad niet aangemaakt kon worden.
+- Stop hier — ga niet door met Stap 5. Zonder doc heeft de branch geen context.
 
 ### Stap 5 — Branch aanmaken
 ```bash

@@ -69,9 +69,10 @@ Bij elke wijziging die je maakt, controleer:
 4. Ga NIET verder met het buiten-scope werk
 
 ### 7. Build fouten
-- Als de build faalt tijdens implementatie: probeer het eerst zelf op te lossen
-- Als het niet lukt na 2 pogingen: roep de build-error-resolver agent aan
-- Noteer de fout en oplossing in de implementatie notities
+Als de build faalt tijdens implementatie: probeer het eerst zelf op te lossen.
+Als het niet lukt na 2 pogingen: roep de build-error-resolver agent aan.
+Als de build-error-resolver ook geen oplossing biedt: stop. Meld aan de gebruiker: "De build blijft falen en de build-error-resolver heeft geen oplossing gevonden. Beoordeel handmatig of de aanpak herzien moet worden." Wacht op gebruikersinput — ga niet door met implementatie op een kapotte build.
+Noteer de fout en de ondernomen stappen in de implementatie notities, ook als het niet opgelost is.
 
 ---
 
@@ -84,6 +85,8 @@ Controleer de task doc `## Implementatie notities` sectie voordat je verder gaat
 - Pas als er inhoudelijke notities staan → ga verder met acceptatiecriteria
 
 ### 9. Acceptatiecriteria checken
+Controleer eerst of de task doc een ## Acceptatiecriteria sectie heeft. Als die ontbreekt of leeg is: stop. Meld aan de gebruiker: "De task doc heeft geen acceptatiecriteria. Voeg deze toe aan de doc voor je verder gaat — zonder acceptatiecriteria is er geen definitie van done." Wacht op gebruikersinput.
+
 Loop elk acceptatiecriterium uit de task doc na:
 - Is het geïmplementeerd? → markeer als gedaan
 - Is het niet geïmplementeerd? → meld dit expliciet

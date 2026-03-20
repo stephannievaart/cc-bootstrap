@@ -90,6 +90,12 @@ Meld aan de gebruiker:
 
 Wanneer de gebruiker terugkomt na `/clear`, orkestreer de stappen:
 
+### Algemene regel voor agent-aanroepen
+Als een agent-aanroep geen bruikbare output oplevert (lege response, foutmelding, of agent stopt zonder resultaat):
+- Meld aan de gebruiker welke agent faalde en in welke stap.
+- Vraag of de stap handmatig uitgevoerd moet worden of opnieuw geprobeerd moet worden.
+- Ga nooit automatisch door naar de volgende stap als de output van de vorige stap ontbreekt — vervolgstappen bouwen hierop voort.
+
 ### Stap 1 — Planning (plan mode)
 - Roep de **architect agent** aan
 - De architect leest de task doc en legt de aanpak vast onder `## Aanpak`
@@ -100,7 +106,8 @@ Wanneer de gebruiker terugkomt na `/clear`, orkestreer de stappen:
 - Alleen als Stap 1 aangeeft dat er een interface geraakt wordt
 - Roep de **api-design agent** aan
 - Contract wordt geschreven in `/docs/architecture/api-contracts/[branch-naam].md`
-- **Wacht op goedkeuring van de gebruiker voor je doorgaat**
+- **Wacht op goedkeuring van de gebruiker voor je doorgaat.**
+  Als de gebruiker aangeeft te willen overslaan of geen API wijziging nodig is: sla Stap 1b over en ga door naar Stap 2. Leg dit vast in de task doc onder ## Aanpak: "Stap 1b overgeslagen: [reden]."
 
 ### Stap 2 — Test scenarios (plan mode)
 - Roep de **test-automation agent** aan in **plan mode** (nog geen testcode schrijven, alleen scenarios vastleggen in de task doc onder `## Test scenarios`)
@@ -125,6 +132,7 @@ Wanneer de gebruiker terugkomt na `/clear`, orkestreer de stappen:
 ### Stap 5 — Tests draaien + refactor (normal mode)
 - Draai de volledige test suite
 - **Bij rode tests:** terug naar Stap 4 — developer agents fixen
+- **Na 3 iteraties nog steeds rood:** stop. Meld aan de gebruiker: "De tests blijven rood na 3 iteraties. Beoordeel handmatig of de aanpak herzien moet worden, of accepteer de rode tests bewust voor de PR." Ga niet verder terug naar Stap 4 — wacht op gebruikersinput.
 - **Bij groen:** refactor indien nodig, dan door naar Stap 6
 
 ### Stap 6 — Documentation (normal mode)
@@ -135,7 +143,7 @@ Wanneer de gebruiker terugkomt na `/clear`, orkestreer de stappen:
 - **Geen PR, geen task doc verplaatsing** — dat gebeurt in Stap 8
 
 ### Stap 7 — Review (plan mode)
-- Roep de review agents aan **parallel**:
+- Roep de review agents aan. In Claude Code betekent parallel: start elke agent in een aparte subagent-aanroep binnen dezelfde sessie, of roep ze sequentieel aan als parallelle aanroep niet beschikbaar is. Volgorde bij sequentieel: security reviewer eerst, dan de overige reviewers, doc-reviewer altijd als laatste.
   - API contract reviewer (als er een contract is)
   - DBA reviewer (als database geraakt)
   - Non-functional reviewer (resilience + observability, altijd bij features/bugs)
