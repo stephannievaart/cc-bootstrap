@@ -47,6 +47,7 @@ De WIP beschrijving moet informatief zijn:
 - Fout: `WIP: work in progress`
 
 **Vraag de gebruiker kort:** "Wat is de huidige staat van je werk?" — gebruik dit voor het WIP message.
+Als er geen gebruiker beschikbaar is of het antwoord uitblijft: genereer het WIP message op basis van `git diff --stat` (gewijzigde bestanden en hun aard).
 
 ### Bij clean working tree
 Meld: "Geen uncommitted changes — alles is al veilig."
@@ -60,7 +61,8 @@ git push origin [huidige-branch]
 
 ## Stap 3 — Doel bepalen
 
-Vraag de gebruiker: "Naar welke taak wil je switchen?"
+Als de gebruiker een argument heeft meegegeven (branch naam of taaknaam): gebruik dat direct als doel. Vraag alleen als er geen argument is:
+"Naar welke taak wil je switchen?"
 
 ### Optie A — Naar een bestaande taak
 - Zoek het document in `docs/work/features/`, `docs/work/bugs/`, of `docs/work/chores/`

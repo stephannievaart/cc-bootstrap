@@ -29,6 +29,8 @@ grep -rl "status: in-progress" docs/work/
 
 ## Interview — stel vragen in groepen
 
+> **Agent-fallback:** Als alle benodigde informatie al beschikbaar is in het argument of de aanroepende context (bijv. een uitgebreide feature-beschrijving), sla de interviewvragen over en gebruik de beschikbare informatie direct. Stel alleen vragen voor ontbrekende verplichte velden (scope, acceptatiecriteria).
+
 ### Groep 1 — Wat en waarom
 1. **Wat moet de feature doen?** — beschrijf het gewenste gedrag
 2. **Waarom is dit nodig?** — welk probleem lost het op, welke waarde levert het

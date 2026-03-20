@@ -13,6 +13,8 @@ Je registreert een technische chore — werk zonder user-visible gedragsverander
 
 ## Stap 1 — Begrijp de chore
 
+> **Agent-fallback:** Als alle benodigde informatie al beschikbaar is in het argument of de aanroepende context, sla de interviewvragen over en gebruik de beschikbare informatie direct. Stel alleen vragen voor ontbrekende verplichte velden.
+
 Vraag de gebruiker:
 1. **Wat moet er gebeuren?** — concrete beschrijving
 2. **Waarom nu?** — urgentie, risico als het niet gebeurt

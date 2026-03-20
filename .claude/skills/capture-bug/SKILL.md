@@ -21,6 +21,8 @@ Meld aan de gebruiker:
 
 ## Interview — kort en gericht
 
+> **Agent-fallback:** Als alle benodigde informatie al beschikbaar is in het argument of de aanroepende context (bijv. een gedetailleerde bugmelding), sla de interviewvragen over en gebruik de beschikbare informatie direct. Stel alleen vragen voor ontbrekende verplichte velden.
+
 ### 1. Wat is er kapot?
 - Beschrijving van het probleem
 - Verwacht gedrag vs. daadwerkelijk gedrag

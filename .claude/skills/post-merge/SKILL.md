@@ -28,7 +28,7 @@ Als de gebruiker een argument meegeeft:
 
 Als de gebruiker geen argument meegeeft:
 - Toon de lijst van gemerged branches (exclusief main zelf)
-- Laat de gebruiker kiezen
+- Laat de gebruiker kiezen. Als er geen gebruiker beschikbaar is (agent-context) en er is precies één gemerged branch: gebruik die. Bij meerdere: stop met fout "Geen branch opgegeven en meerdere kandidaten."
 
 **Als de branch niet gemerged is:** meld dit en stop — deze skill is alleen voor afgeronde PRs.
 

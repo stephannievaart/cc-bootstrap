@@ -16,7 +16,7 @@ Dit is altijd de **laatste stap** van elke taak. Geen uitzondering.
 
 - **Automatisch:** als Stap 7 in het task workflow, na Stap 6 (afronden)
 - **Handmatig:** wanneer de gebruiker /doc-review aanroept
-- Bij handmatige aanroep: vraag welk document of welk gebied je moet controleren
+- Bij handmatige aanroep: vraag welk document of welk gebied je moet controleren. Als er een argument is meegegeven, gebruik dat direct.
 
 ---
 

@@ -23,7 +23,7 @@ Je start het volledige werkproces voor een taak. Dit is het centrale punt dat al
 
 ### 1. Identificeer de taak
 - Als de gebruiker een taaknaam noemt: zoek het document in `docs/work/features/`, `docs/work/bugs/`, of `docs/work/chores/` (filter op `status: backlog` in frontmatter)
-- Als de gebruiker geen naam noemt: toon de opties via feature-planner logica en laat kiezen
+- Als de gebruiker geen naam noemt: toon de opties via feature-planner logica en laat kiezen. Als er geen gebruiker beschikbaar is (agent-context): stop met fout "Geen taaknaam meegegeven."
 - Als het document niet gevonden wordt: meld dit en stop
 
 ### 2. Controleer branch-based scoping
@@ -77,6 +77,8 @@ Commit: `docs: start werk aan [taaknaam]`
 - Pull laatste wijzigingen: `git pull origin [branch]` (als remote bestaat)
 
 ### 5. /clear herinnering
+> **Agent-context:** Als start-work wordt aangeroepen door een orchestrator (bijv. een ander script of agent in een verse sessie), sla deze stap over en ga direct door naar de workflow stappen.
+
 Meld aan de gebruiker:
 > "Is dit je eerste actie in deze sessie? Dan kun je doorgaan.
 > Heb je al eerder werk gedaan in deze sessie? Doe dan eerst `/clear`

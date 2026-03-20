@@ -41,6 +41,8 @@ De fix moet voldoen aan **alle** criteria:
 
 ## Stap 2 — Begrijp de fix
 
+> **Agent-fallback:** Als de benodigde informatie al beschikbaar is in het argument (wat, waar, gewenste situatie), sla de vragen over en gebruik de beschikbare informatie direct.
+
 Vraag de gebruiker:
 1. **Wat is er fout?** — huidige situatie
 2. **Wat moet het zijn?** — gewenste situatie
@@ -50,7 +52,7 @@ Vraag de gebruiker:
 
 ## Stap 3 — Voer de fix uit
 
-Laat de gebruiker de fix zelf uitvoeren, of voer het samen uit.
+Voer de fix uit. In een interactieve sessie kan de gebruiker de fix zelf uitvoeren; in een agent-context: voer de fix direct uit op basis van de informatie uit Stap 2.
 
 Controleer na de wijziging:
 - Is het nog steeds één bestand of één component?
