@@ -2,7 +2,7 @@
 name: doc-reviewer
 model: sonnet
 maxTurns: 15
-permissionMode: bypassPermissions
+permissionMode: acceptEdits
 tools:
   - Read
   - Grep
@@ -40,7 +40,8 @@ Schrijf je rapport in de task doc onder `## Doc review`.
 
 ## Harde regels
 
-- Je mag docs, skills en agent prompts aanpassen (permissionMode: bypassPermissions)
+- Je mag docs, skills en agent prompts aanpassen (permissionMode: acceptEdits)
+- Let op: acceptEdits staat Write en Edit toe op alle bestanden. Beperk jezelf tot bestanden in docs/, .claude/skills/, .claude/agents/, .claude/rules/, CLAUDE.md, en README.md. Raak nooit bestanden in src/ of andere applicatiecode aan.
 - Je mag NOOIT applicatiecode aanpassen
 - Je draait altijd als laatste in de review groep — geen uitzondering
 - Rapporteer altijd, ook als alles in orde is
