@@ -151,9 +151,15 @@ Dit wordt door start-work zelf georkestreerd (geen aparte agent):
 1. **Task doc volledigheid controleren** — check dat alle verplichte secties ingevuld zijn:
    - `## Beschrijving`, `## Acceptatiecriteria`, `## Aanpak`, `## Test scenarios`, `## Implementatie notities`, `## Review bevindingen`
    - Als secties ontbreken of leeg zijn: **meld dit aan gebruiker** — vul ze niet zelf in
-2. **PR aanmaken** — `gh pr create --title "[type]: [beschrijving]" --body "$(cat docs/work/[type]/[task-doc].md)"`
+2. **Task doc status wijzigen** — wijzig frontmatter `status: in-progress` naar `status: done` en commit op de feature branch:
+   ```bash
+   git add docs/work/[type]/[task-doc].md
+   git commit -m "docs: markeer [taaknaam] als done"
+   ```
+   De statuswijziging zit bewust in de PR commit — zo is done alleen effectief op main na een echte merge. Als de PR geweigerd wordt, blijft main ongewijzigd.
+3. **PR aanmaken** — `gh pr create --title "[type]: [beschrijving]" --body "$(cat docs/work/[type]/[task-doc].md)"`
    - Controleer eerst of er nog open CRITICAL of HIGH bevindingen zijn — zo ja: **maak GEEN PR**
-3. De task doc blijft op `status: in-progress` totdat de PR gemerged is. Voer daarna `/post-merge` uit om de taak definitief af te sluiten.
+4. Meld aan de gebruiker: "Na merge, voer `/post-merge` uit om branch, worktree, en task doc op te ruimen."
 
 ---
 

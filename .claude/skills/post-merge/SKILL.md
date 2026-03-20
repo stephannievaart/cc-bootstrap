@@ -7,7 +7,7 @@ user-invocable: true
 
 # Post-Merge — Afronding na gemerged PR
 
-Je rondt een taak af nadat de PR gemerged is. Dit omvat: task doc afsluiten, branch opruimen, worktree verwijderen, en main updaten.
+Je rondt een taak af nadat de PR gemerged is. De task doc heeft al `status: done` (meegemerged via de PR). Deze skill doet alleen cleanup: task doc verplaatsen naar done/, branch verwijderen, worktree opruimen, en main updaten.
 
 ---
 
@@ -41,20 +41,13 @@ Zoek in `docs/work/` naar een doc met `Branch: [branch-naam]`:
 grep -rl "Branch:.*[branch-naam]" docs/work/
 ```
 
-Als er geen match is: meld dit en ga door met Stap 5 (branch cleanup) — niet elke branch heeft een task doc.
+Als er geen match is: meld dit en ga door met Stap 4 (branch cleanup) — niet elke branch heeft een task doc.
 
 ---
 
-## Stap 3 — Wijzig task doc status
+## Stap 3 — Verplaats task doc naar done
 
-Open de task doc en wijzig de frontmatter:
-```yaml
-status: done
-```
-
----
-
-## Stap 4 — Verplaats task doc naar done
+De task doc heeft al `status: done` — dat is meegemerged via de PR. Hier alleen verplaatsen.
 
 Bepaal het type (features, bugs, of chores) op basis van het huidige pad en verplaats:
 ```bash
@@ -68,12 +61,12 @@ mv docs/work/[type]/[bestandsnaam] docs/work/[type]/done/[bestandsnaam]
 Commit op main:
 ```bash
 git add docs/work/
-git commit -m "docs: sluit [taaknaam] af na merge"
+git commit -m "docs: verplaats [taaknaam] naar done na merge"
 ```
 
 ---
 
-## Stap 5 — Verwijder branch lokaal
+## Stap 4 — Verwijder branch lokaal
 
 ```bash
 git branch -d [branch-naam]
@@ -81,7 +74,7 @@ git branch -d [branch-naam]
 
 ---
 
-## Stap 6 — Verwijder branch remote
+## Stap 5 — Verwijder branch remote
 
 ```bash
 git push origin --delete [branch-naam]
@@ -89,7 +82,7 @@ git push origin --delete [branch-naam]
 
 ---
 
-## Stap 7 — Ruim worktree op
+## Stap 6 — Ruim worktree op
 
 Bepaal het worktree pad:
 ```bash
@@ -108,7 +101,7 @@ Als de worktree niet bestaat: sla over — mogelijk al handmatig opgeruimd.
 
 ---
 
-## Stap 8 — Pull main
+## Stap 7 — Pull main
 
 ```bash
 git pull origin main
@@ -116,10 +109,10 @@ git pull origin main
 
 ---
 
-## Stap 9 — Bevestig aan de gebruiker
+## Stap 8 — Bevestig aan de gebruiker
 
 Geef een samenvatting:
-- Welke task doc is afgesloten en verplaatst
+- Welke task doc is verplaatst naar done/
 - Welke branch is verwijderd (lokaal en remote)
 - Welke worktree is opgeruimd
 - Dat main up-to-date is
@@ -134,7 +127,7 @@ Elke stap kan onafhankelijk falen. Bij een fout: **meld het en ga door met de vo
 Veelvoorkomende situaties:
 - **Branch al verwijderd remote** (bijv. GitHub auto-delete na merge) — meld en ga door
 - **Worktree bestaat niet** — meld en ga door
-- **Task doc niet gevonden** — meld en ga door met branch cleanup
+- **Task doc niet gevonden** — meld en ga door met branch cleanup (Stap 4)
 - **Branch niet lokaal aanwezig** — fetch eerst, dan verwijder remote
 
 ---
